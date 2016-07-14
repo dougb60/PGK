@@ -128,10 +128,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#projeto"><i class="fa fa-file-text"></i> Projetos <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="projeto" class="collapse">
                             <li>
-                                <a href="#">Novo Projeto</a>
+                                <a href="cadastra-projeto.php">Novo Projeto</a>
                             </li>
                             <li>
-                                <a href="#">Projetos ativos</a>
+                                <a href="lista-projeto.php">Projetos ativos</a>
                             </li>
 						</ul>                       
                         <a href="javascript:;" data-toggle="collapse" data-target="#tarefa"><i class="fa fa-list"></i> Tarefas <i class="fa fa-fw fa-caret-down"></i></a>
