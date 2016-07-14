@@ -137,10 +137,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#tarefa"><i class="fa fa-list"></i> Tarefas <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="tarefa" class="collapse">
                             <li>
-                                <a href="cadastra-usuario.php">Nova tarefa</a>
+                                <a href="#">Nova tarefa</a>
                             </li>
                             <li>
-                                <a href="lista-usuario.php">Listar Tarefa</a>
+                                <a href="#">Listar Tarefa</a>
                             </li>
                         </ul>    
                         
