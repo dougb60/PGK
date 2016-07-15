@@ -137,7 +137,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#tarefa"><i class="fa fa-list"></i> Tarefas <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="tarefa" class="collapse">
                             <li>
-                                <a href="#">Nova tarefa</a>
+                                <a href="cadastra-tarefa.php">Nova tarefa</a>
                             </li>
                             <li>
                                 <a href="#">Listar Tarefa</a>
