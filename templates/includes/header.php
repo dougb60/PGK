@@ -20,7 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PGK - A Karla é uma PPK</title>
+    <title>PGK - Processo Generico Kanban</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -140,7 +140,7 @@
                                 <a href="cadastra-tarefa.php">Nova tarefa</a>
                             </li>
                             <li>
-                                <a href="#">Listar Tarefa</a>
+                                <a href="lista-tarefa.php">Listar Tarefa</a>
                             </li>
                         </ul>    
                         

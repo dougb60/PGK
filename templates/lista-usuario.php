@@ -37,7 +37,7 @@ $lista = $dao->listar("");
 			</tr>
 	<? foreach ($lista as $contador => $objeto){ ?>
 				<tr>
-					<td><?= $objeto->usuario_id ?></td>
+					<td><?= $objeto->nome ?></td>
 					<td><?= $objeto->login ?></td>
 					<td><?= $objeto->nome ?></td>
 					<td><?= $objeto->email ?></td>
@@ -51,12 +51,14 @@ $lista = $dao->listar("");
 					&op=alterar" >
 					<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
 					<!-- Envia GET para excluir usuario -->
-					<td><a href="altera-usuario.php"
+					<td><a href="altera-usuario.php
 					?id=<?= $objeto->usuario_id ?>
 					&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+					
+					</tr>
 					<?} ?>
 					
-				</tr>
+				
     </table>
 <?php 
 include_once 'includes/footer.php';

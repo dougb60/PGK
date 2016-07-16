@@ -29,12 +29,12 @@
 	      			<textarea name="descricao" class="form-control" id="desc" placeholder="Descrição" required></textarea>
 	    		</div>
 	    		</div>
-	  		<div class="form-group">
-	    		<div class="col-sm-offset-3 col-sm-6">
-	      			<button type="submit" class="btn btn-primary">Registrar</button>
-	      			<button type="reset" class="btn btn-danger">Apagar</button>
-	    		</div>
-	  		</div>
+	  			<div class="form-group">
+	    			<div class="col-sm-offset-3 col-sm-6">
+	      				<button type="submit" class="btn btn-primary">Registrar</button>
+	      				<button type="reset" class="btn btn-danger">Apagar</button>
+	    			</div>
+	  			</div>
 			</form>
 	</div>
 </div>			

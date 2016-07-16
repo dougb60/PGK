@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastrar Projeto 
+                            Lista Projeto 
                        </h1>
                     </div>
                 </div>
@@ -44,15 +44,14 @@
 					<td><?= $objeto->data_fim_formatada ?></td>
 					
 					
-					<td>
-<!-- envia GET -->
-<a href="altera-projeto.php
-	?id=<?= $objeto->projeto_id ?>
-	&nome=<?= $objeto->nome ?>
-	&desc=<?= $objeto->descricao ?>
-	&dini=<?= $objeto->data_inicio ?>
-	&dfim=<?= $objeto->data_fim ?>
-	&op=alterar">A</a>
+					<!-- envia GET -->
+					<td><a href="altera-projeto.php
+				?id=<?= $objeto->projeto_id ?>
+				&nome=<?= $objeto->nome ?>
+				&desc=<?= $objeto->descricao ?>
+				&dini=<?= $objeto->data_inicio ?>
+				&dfim=<?= $objeto->data_fim ?>
+				&op=alterar">A</a>
 					</td>
 					<td>
 <a href="insere-tarefa.php
