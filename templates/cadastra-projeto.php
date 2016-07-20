@@ -21,9 +21,9 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		      <label for="desc" class="col-sm-2 control-label">DescriÃ§Ã£o</label>
+		      <label for="desc" class="col-sm-2 control-label">Descrição</label>
 		    <div class="col-sm-6">
-		      <textarea name="descricao" class="form-control" id="desc" placeholder="DescriÃ§Ã£o" required></textarea>
+		      <textarea name="descricao" class="form-control" id="desc" placeholder="Descrição" required></textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">
