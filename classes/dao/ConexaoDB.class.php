@@ -1,11 +1,11 @@
-<?
+﻿<?
 class ConexaoDB {
 	
 	public static function conectar(){
 		try {
 			// Variáveis utilizadas para a conexão com o BD		
 			$tipo = "mysql";
-			$banco = "tccdb2";
+			$banco = "dbtcc";
 			$caminho = "localhost";
 			$usuario = "root";
 			$senha = "";			
