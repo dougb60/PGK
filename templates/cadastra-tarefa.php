@@ -1,5 +1,26 @@
 <?
 	include_once 'includes/header.php';
+	
+	if(count($_POST) > 0){
+	
+		$obj = Entidade::getObject($_POST);
+		$dao = new TarefaDao();
+		$nome = $dao->validar($obj->nome);
+	
+	
+	
+		if($nome) {
+	
+			echo "este nome ja existe <br>";
+	
+	
+		}else{
+			$dao->inserir($obj);
+			header("Location: lista-tarefa.php");
+	
+		}
+	}
+	
 ?>
 	<div id="page-wrapper">
 		<div class="container-fluid">

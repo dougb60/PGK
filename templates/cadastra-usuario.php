@@ -1,10 +1,14 @@
 <?
 include_once 'includes/header.php';
-$dao = new UsuarioDao();
-$lista = $dao->listar("");
+if(count($_POST) > 0){
+	 
+	$obj = Entidade::getObject($_POST);
+	$dao = new UsuarioDao();
+	$dao->inserir($obj);
+	header("Location: lista-usuario.php");
 
 
-
+}
 ?>
 
 <div id="page-wrapper">

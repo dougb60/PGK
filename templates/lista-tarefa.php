@@ -1,6 +1,12 @@
 <?
 	include_once 'includes/header.php';
 	
+	if(count($_GET)>0){
+		$dao = new TarefaDao();
+		$dao->excluir($_GET["id"]);
+		echo "Tarefa deletada com sucesso";
+	}
+	
 	$dao = new TarefaDao();
 	$lista = $dao->listar("");
 ?>

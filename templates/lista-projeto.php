@@ -2,6 +2,11 @@
 	include_once 'includes/header.php';
 	
 	
+	if(count($_GET)>0){
+		$dao = new ProjetoDao();
+		$dao->excluir($_GET["id"]);
+		echo "Projeto deletado com sucesso";
+	}
 	$dao = new ProjetoDao();
 	$lista = $dao->listar("");
 ?>
