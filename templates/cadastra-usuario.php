@@ -1,4 +1,4 @@
-<?
+<?php
 include_once 'includes/header.php';
 if(count($_POST) > 0){
 	 
@@ -27,23 +27,29 @@ if(count($_POST) > 0){
                 
                 <!-- /.row -->
                 <!-- Form -->
-    <form class="form-horizontal" name="form" action="cadastra-usuario.php" method="POST">
+    <form class="form-horizontal" name="form" action="" method="POST" id="registra-pessoa">
 	  <div class="form-group">
 	    <label for="nome" class="col-sm-2 control-label">Nome</label>
 	    <div class="col-sm-6">
 	      <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" required>
 	    </div>
 	  </div>
-	  <div class="form-group">
-	    <label for="email" class="col-sm-2 control-label">Email</label>
+	<div class="form-group">
+	    <label for="text" class="col-sm-2 control-label">Email</label>
 	    <div class="col-sm-6">
-	      <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+	      <input type="text" name="email" class="form-control" id="email" placeholder="Email" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <label for="fone" class="col-sm-2 control-label">Telefone</label>
 	    <div class="col-sm-6">
-	      <input type="text" name="fone" class="form-control" id="fone" placeholder="Telefone" required>
+	      <input type="text" name="fone" class="form-control" id="fone" placeholder="ex:(99)9999-9999" required>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="cel" class="col-sm-2 control-label">Celular</label>
+	    <div class="col-sm-6">
+	      <input type="text" name="cel" class="form-control" id="cel" placeholder="ex:(99)9 9999-9999" required>
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -58,11 +64,17 @@ if(count($_POST) > 0){
 	      <input type="password" name="senha" class="form-control" id="senha" placeholder="senha" required>
 	    </div>
 	  </div>
+	   <div class="form-group">
+	    <label for="senha2" class="col-sm-2 control-label">Repita a senha</label>
+	    <div class="col-sm-6">
+	      <input type="password" name="senha2" class="form-control" id="senha2" placeholder="Repita a senha" required>
+	    </div>
+	  </div>
       
      
         <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-primary">Registrar</button>
+	      <button type="submit" class="btn btn-primary" id="submit-button">Registrar</button>
 	      <button type="reset" class="btn btn-danger">limpar</button>
 	    </div>
 	  </div>

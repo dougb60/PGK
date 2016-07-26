@@ -37,7 +37,7 @@
                        </h1>
                     </div>
                 </div>
-        <form class="form-horizontal" name="form" action="" method="POST">
+        <form class="form-horizontal" name="form" action="" method="POST" id="registra-projeto">
 		  <div class="form-group">
 		    <label for="nome" class="col-sm-2 control-label">Nome</label>
 		    <div class="col-sm-6">
@@ -47,7 +47,7 @@
 		  <div class="form-group">
 		      <label for="desc" class="col-sm-2 control-label">Descrição</label>
 		    <div class="col-sm-6">
-		      <textarea name="descricao" class="form-control" id="desc" placeholder="Descrição" required></textarea>
+		      <textarea name="descricao" class="form-control" id="desc" placeholder="Descreva seu projeto" required></textarea>
 		    </div>
 		  </div>
 		  <div class="form-group">

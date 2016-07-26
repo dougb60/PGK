@@ -1,5 +1,12 @@
 $(function(){
 	
+	/*mascara telefone*/
+	$("#fone").mask("(99) 9999-9999");
+	/*mascara celular*/
+	$("#cel").mask("(99) 99999-9999");
+
+	
+	/*warning*/
 	$.validator.setDefaults({
 		errorClass: 'help-block',
 		highlight: function(element){

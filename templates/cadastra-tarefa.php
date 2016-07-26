@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">
-						Cadastrar Usuários 
+						Cadastrar Tarefas 
 					</h1>
                         
                        
@@ -37,7 +37,7 @@
 			</div>
                 
                 <!-- /.row -->
-			<form class="form-horizontal" name="form" action="" method="POST">
+			<form class="form-horizontal" name="form" action="" method="POST" id="registra-tarefa">
 	  			<div class="form-group">
 	    			<label for="nome" class="col-sm-2 control-label">Nome</label>
 	    		<div class="col-sm-6">

@@ -1,5 +1,4 @@
 <?php 
-	
 	require_once "../classes/entidades/Entidade.class.php";
 	require_once "../classes/dao/ConexaoDB.class.php";
 	require_once "../classes/dao/UsuarioDao.class.php";
@@ -7,8 +6,7 @@
 	require_once "../classes/dao/ProjetoDao.class.php";
 	require_once "../classes/dao/TarefaDao.class.php";
 	require_once "../classes/dao/InsereTarefaDao.class.php";
-?>
-
+	?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -153,3 +151,4 @@
             </div>
             <!-- /.navbar-collapse -->
         </nav>
+        
