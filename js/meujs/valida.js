@@ -118,7 +118,10 @@ $(function(){
 				required: true,
 				
 			},
-			descricao: "required",
+			descricao:{
+				required:true,
+				minlength: 10
+			},
 			dini: {
 				required: true,
 				
@@ -134,11 +137,11 @@ $(function(){
 				required: 'Insira o nome do projeto.'
 			},
 			descricao:{
-				required:'Insira uma descrição para o projeto.'
-				
+				required:'Insira uma descrição para o projeto.',
+				minlength: 'A descrição deve conter ao menos 10 caracteres.'
 			},
 			dini:{
-			
+				
 				required: 'Insira a data de inicio do projeto.'
 				
 			},
@@ -155,7 +158,10 @@ $(function(){
 				required: true,
 				
 			},
-			descricao: "required",
+			descricao: {
+				minlength: 10,
+				required: true
+			}
 			
 			
 		},
@@ -164,8 +170,8 @@ $(function(){
 				required: 'Insira o nome do projeto.'
 			},
 			descricao:{
-				required:'Insira uma descrição para o projeto.'
-				
+				required:'Insira uma descrição para o projeto.',
+				minlength: 'A descrição deve conter ao menos 10 caracteres.'
 			}
 			
 			
