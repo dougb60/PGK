@@ -4,7 +4,7 @@
 	if(count($_POST) > 0){
 	
 		$obj = Entidade::getObject($_POST);
-		$dao = new ProjetoDao();
+		$dao = new UsuarioDao();
 		$nome = $dao->validar($obj->nome);
 	
 	

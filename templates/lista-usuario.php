@@ -2,10 +2,19 @@
 include_once 'includes/header.php';
 $dao = new UsuarioDao();
 $lista = $dao->listar("");
+if(count($_GET)>0){
+	$dao = new UsuarioDao();
+	$dao->excluir($_GET["id"]);
+	
+	header("Location: lista-usuario.php");
+	
+	
+}
 
 
 
 ?>
+
 			<!-- Row -->
 <div id="page-wrapper">
             <div class="container-fluid">
@@ -23,7 +32,7 @@ $lista = $dao->listar("");
                 
                 <!-- /.row -->
                 <!-- Form -->
-    <table class="table table-striped">
+    <table class="table table-striped" id="teste">
   			
   			<tr>
 				<th>Registro</th>
@@ -51,10 +60,13 @@ $lista = $dao->listar("");
 					&op=alterar" >
 					<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
 					<!-- Envia GET para excluir usuario -->
-					<td><a href="altera-usuario.php
+					<td><a href="lista-usuario.php
 					?id=<?= $objeto->usuario_id ?>
-					&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
-					
+					&op=excluir" onclick="exclui()"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+					<script>
+						function exclui(){
+						alert('Usuario Excluido com sucesso');}
+						</script>
 					</tr>
 					<?} ?>
 					

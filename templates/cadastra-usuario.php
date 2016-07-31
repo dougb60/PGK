@@ -4,8 +4,18 @@ if(count($_POST) > 0){
 	 
 	$obj = Entidade::getObject($_POST);
 	$dao = new UsuarioDao();
-	$dao->inserir($obj);
-	header("Location: lista-usuario.php");
+	$nome = $dao->validar($obj->login);
+	
+	
+	if ($nome){
+		echo "Este Login já existe";
+	}else {
+		$dao->inserir($obj);
+		header("Location: lista-usuario.php");
+		//var_dump();
+	}
+	
+	
 
 
 }
