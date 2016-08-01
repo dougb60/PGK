@@ -32,11 +32,11 @@ if(count($_POST) > 0){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastrar Projeto 
+                            Incluir Tarefa 
                        </h1>
                     </div>
                 </div>
-    	<h1 class="page-header">Incluir Tarefa</h1>
+    	
 		<form class="form-horizontal" name="form" action="" method="POST">
 	  		<div class="form-group">
 	    		<label for="nome" class="col-sm-3 control-label">Nome Projeto</label>

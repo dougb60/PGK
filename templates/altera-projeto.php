@@ -32,11 +32,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastrar Projeto 
+                            Alterar Projeto 
                        </h1>
                     </div>
                 </div>
-          <h1 class="page-header">Alterar Projeto</h1>
+          
 		  <form class="form-horizontal" name="form" action="" method="POST">
 	  	  	<div class="form-group">
 	    		<label for="nome" class="col-sm-2 control-label">Nome</label>

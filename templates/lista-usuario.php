@@ -52,7 +52,7 @@ if(count($_GET)>0){
 					<td><?= $objeto->email ?></td>
 					<td><?= $objeto->telefone?></td>
 					<!-- envia GET para alterar usuario -->
-					<td><a href="#
+					<td><a href="altera-usuario.php
 					?id=<?= $objeto->usuario_id?>
 					&nome=<?= $objeto->nome ?>
 					&email=<?= $objeto->email ?>

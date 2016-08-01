@@ -32,9 +32,9 @@
 				<th>Data de inicio</th>
 				<th>Prazo final</th>
 				<th>Alterar</th>
-				<th>Inserir</th>
 				<th>Excluir</th>
-				<th>Tarefas</th>
+				<th>Inserir tarefa</th>
+				<th>Listar tarefas</th>
 			</tr>
 			<? foreach ($lista as $contador => $objeto){
 				$df = explode("-", $objeto->data_inicio);
@@ -56,25 +56,24 @@
 				&desc=<?= $objeto->descricao ?>
 				&dini=<?= $objeto->data_inicio ?>
 				&dfim=<?= $objeto->data_fim ?>
-				&op=alterar">A</a>
-					</td>
+				&op=alterar"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
+				
+									<td>
+<a href="lista-projeto.php
+	?id=<?= $objeto->projeto_id ?>
+	&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+					
 					<td>
 <a href="insere-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir">I</a>
-					</td>
-					<td>
-<a href="lista-projeto.php
-	?id=<?= $objeto->projeto_id ?>
-	&op=excluir">X</a>
-					</td>
+	&op=inserir"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+
 					<td>
 <a href="lista-projeto-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir">V</a>
-					</td>
+	&op=inserir"><i class="fa fa-list"></i></a></td>
 					
 				</tr>
 			<? } ?>

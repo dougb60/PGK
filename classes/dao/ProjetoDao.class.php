@@ -10,7 +10,7 @@ class ProjetoDao {
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				INSERT INTO projetos (nome, descricao, data_inicio, data_fim, estados_id, usuarios_id) 
-				VALUES (?, ?, ?, ?, 1, 2);
+				VALUES (?, ?, ?, ?, 1, 23);
 			");
 			$stm->bindValue(1, $obj->nome);
 			$stm->bindValue(2, $obj->descricao);

@@ -11,7 +11,7 @@ class InsereTarefaDao {
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				INSERT INTO tarefas_projetos (data_inicio, data_fim, tarefas_id, projetos_id, estados_id, usuarios_id) 
-				VALUES (?, ?, ?, ?, 1, 2);
+				VALUES (?, ?, ?, ?, 1, 23);
 			");
 			$stm->bindValue(1, $obj->dini);
 			$stm->bindValue(2, $obj->dfim);

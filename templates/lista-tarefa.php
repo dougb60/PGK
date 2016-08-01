@@ -40,7 +40,7 @@
 					<td><?= $objeto->nome ?></td>
 					<td><?= $objeto->descricao ?></td>
 					<!-- envia GET para alterar usuario -->
-					<td><a href="#
+					<td><a href="altera-tarefa.php
 					?id=<?= $objeto->usuario_id?>
 					&nome=<?= $objeto->nome ?>
 					&email=<?= $objeto->email ?>
@@ -48,7 +48,7 @@
 					&op=alterar" >
 					<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
 					<!-- Envia GET para excluir usuario -->
-					<td><a href="altera-usuario.php
+					<td><a href="#
 					?id=<?= $objeto->usuario_id ?>
 					&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
 					

@@ -29,8 +29,8 @@ $lista = $dao->listar($get);
 	                
 	                <!-- /.row -->
 	                <!-- Lista -->
-		<h1><?= $get["nome"]?></h1>
-		<table class="table table-striped">
+		
+				<table class="table table-striped">
 				<tr>
 					<th>Nome da tarefa</th>
 					<th>Descrição</th>

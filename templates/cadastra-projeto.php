@@ -4,9 +4,9 @@
 	if(count($_POST) > 0){
 	
 		$obj = Entidade::getObject($_POST);
-		$dao = new UsuarioDao();
+		$dao = new ProjetoDao();
 		$nome = $dao->validar($obj->nome);
-	
+		$dump;
 	
 	
 		if($nome) {
@@ -19,7 +19,7 @@
 			}else{
 				$dao->inserir($obj);
 				header("Location: lista-projeto.php");
-	
+
 			}
 		}
 	}
