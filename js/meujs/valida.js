@@ -185,4 +185,40 @@ $(function(){
 		}
 		
 	});
+	
+	$("#altera-usuario").validate({
+		rules: {
+			email:{
+				required: true,
+				email: true
+			},
+			
+			fone:{
+				telefone: true
+				
+			},
+			cel:{
+				celular:true
+			}
+		},
+		messages: {
+			nome: {
+				required: 'Insira seu nome.'
+			},
+			email:{
+				required:'Insira seu email.',
+				email: 'Inisira um email <em>válido<em>'
+			},
+			fone:{
+			
+				required: 'Insira o numero do seu Telefone.'
+				
+			},
+			cel:{
+				required: 'Insira o numero do seu Celular.'
+			}
+			
+		}
+		
+	});
 });
