@@ -3,25 +3,23 @@ require_once "../classes/entidades/Entidade.class.php";
 require_once "../classes/dao/ConexaoDB.class.php";
 require_once "../classes/dao/UsuarioDao.class.php";
 
-    if (count($_POST)>0){
-    $obj = Entidade::getObject($_POST);
-    $dao = new UsuarioDao();
-    $lista = $dao->login($obj);
-    $redirect = "localhost/tcc/templates/index.php";
-    $id = "";
-    
-    foreach ($lista as $contador=>$objeto){
-    $id = $objeto->usuario_id;
-    }
-    if ($id > 0){
-        header("Location: Http://$redirect");
-    }
-    else {
-        header("Location: logout.php");
-        
-    }
-    
-}   
+$dao = new UsuarioDao();
+$obj = new Entidade();
+
+$login = isset($_POST["login"])? $_POST["login"] :"";
+$senha = isset($_POST["senha"])? $_POST["senha"] :"";
+
+if ($login != "" && $senha != ""){
+	$obj = $dao->validaLogin($login, $senha);
+	if ($obj == ""){
+		$_SESSION["usuario_logado"] = "";
+		header("Location: login.php");
+	} else {
+			
+		$_SESSION["usuario_logado"] = $login;
+		header("Location: index.php");
+	}
+}
     
 
 ?>

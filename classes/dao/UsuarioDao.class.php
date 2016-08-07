@@ -126,31 +126,76 @@ class UsuarioDao {
 		}
 	}
 	
-	public function validar($obj){
+public function carregar($id){
 		$objetos = array();
 		try {
-			// Abre a conexão com o banco de dados
 			$con = ConexaoDB::conectar();
-			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				SELECT nome FROM usuarios
-				WHERE login = ?;
+			SELECT * FROM usuarios 
+			WHERE usuario_id = ?;
 			");
-			$stm->bindValue(1, $obj);
-			// Executa o comando
+			$stm->bindValue(1, $id);
 			$resp = $stm->execute();
-				
 			if($resp && $stm->rowCount()){
 				$objetos = $stm->fetchAll(
 						PDO::FETCH_OBJ
-						);
+				);
 			}
-			return $objetos;
-	
-	
+			return $objetos[0];
 		} catch(Exception $e){
-			echo "Erro no inserir: " . $e->getMessage();
+			echo "Erro no carregar: " . $e->getMessage();
 		}
+	}
+	
+	public function validaLogin($login, $senha){
+		$objeto = "";
+		try {
+			$con = ConexaoDB::conectar();
+			$stm = $con->prepare("
+			SELECT * FROM usuarios 
+			WHERE login = ? AND senha = ?;
+			");
+			$stm->bindValue(1, $login);
+			$stm->bindValue(2, $senha);
+			$resp = $stm->execute();
+			if($resp && $stm->rowCount()){
+				$objeto = $stm->fetch(PDO::FETCH_OBJ);
+			}
+			
+		} catch(Exception $e){
+			echo "Erro no carregar: " . $e->getMessage();
+		}
+		return $objeto;
+	}
+	
+	public function validaAcesso($login, $pagina){
+		$objeto = "";
+		try {
+			$con = ConexaoDB::conectar();
+			$stm = $con->prepare("
+				SELECT 
+					u.usuario_id
+				FROM 
+					db_tcc.usuarios AS u
+						left JOIN usuarios_paginas AS up
+							ON u.usuario_id = up.usuario_id
+						left JOIN paginas AS p
+							ON p.pagina_id = up.pagina_id
+				WHERE 
+					u.login = ? 
+					AND p.nome = ?;
+			");
+			$stm->bindValue(1, $login);
+			$stm->bindValue(2, $pagina);
+			$resp = $stm->execute();
+			if($resp && $stm->rowCount()){
+				$objeto = $stm->fetch(PDO::FETCH_OBJ);
+			}
+			
+		} catch(Exception $e){
+			echo "Erro no carregar: " . $e->getMessage();
+		}
+		return $objeto;
 	}
 	
 }
