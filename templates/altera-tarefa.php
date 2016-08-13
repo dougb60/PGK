@@ -5,8 +5,9 @@ $obj = ($_GET);
 if((count($_POST)>0)){
 	
 	$get = Entidade::getObject($_POST);
-	$dao = new UsuarioDao();
+	$dao = new TarefaDao();
 	$nome = $dao->validar($get->nome);
+	//var_dump($get);exit();
 	
 	if(($get->nome != $obj["nome"]) && $nome) {
 	
@@ -15,8 +16,9 @@ if((count($_POST)>0)){
 	}
 		else{
 			$dao->alterar($get);
-			header("Location: lista-usuario.php");
-	
+			
+			header("Location: lista-tarefa.php");
+		
 	}
 }
 ?>
@@ -42,7 +44,12 @@ if((count($_POST)>0)){
 	  <div class="form-group">
 	    <label for="descricao" class="col-sm-2 control-label">Email</label>
 	    <div class="col-sm-6">
-	      <input type="text" name="descricao" class="form-control" id="descricao" value="<?= $obj["email"] ?>" required>
+	      <input type="text" name="descricao" class="form-control" id="descricao" value="<?= $obj["descricao"] ?>" required>
+	    </div>
+	  </div>
+	  <div>
+	    <div>
+	      <input type="hidden" name="id" value="<?= $obj["id"]?>">
 	    </div>
 	  </div>
 	   <div class="form-group">

@@ -7,12 +7,12 @@
 	require_once "../classes/dao/TarefaDao.class.php";
 	require_once "../classes/dao/InsereTarefaDao.class.php";
 	
-// Verifica em qual página estou
+/*// Verifica em qual página estou
 	$url = $_SERVER["REQUEST_URI"];	
 	$url = explode('/', $_SERVER["REQUEST_URI"]);
 	$pagina = $url[count($url) - 1];
 	
-	// Inicia a sessão do PHP
+	 Inicia a sessão do PHP
 	$SID = session_id();
 	if(empty($SID)){
 		session_start();
@@ -30,11 +30,11 @@
 		$pode_acessar = 
 			$dao->validaAcesso($usuario_logado, $pagina);
 		if ($pode_acessar == ""){
-			header("Location: login.php");
+			//header("Location: login.php");
 		} 
 	} else if ($pagina != "login.php"){
 		header("Location: login.php");
-	}
+	}*/
 	?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -54,6 +54,8 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
+    <!-- Data Table -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
 
     <!-- Morris Charts CSS -->
     <link href="../css/plugins/morris.css" rel="stylesheet">

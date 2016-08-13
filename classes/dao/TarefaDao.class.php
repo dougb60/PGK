@@ -34,14 +34,14 @@ class TarefaDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				UPDATE usuarios SET
-					login = ?,
-					senha = ?
-				WHERE usuario_id = ?;
+				UPDATE tarefas SET
+					nome = ?,
+					descricao = ?
+				WHERE tarefas_id = ?;
 			");
-			$stm->bindValue(1, $obj->login);
-			$stm->bindValue(2, $obj->senha);
-			$stm->bindValue(3, $obj->usuario_id);
+			$stm->bindValue(1, $obj->nome);
+			$stm->bindValue(2, $obj->descricao);
+			$stm->bindValue(3, $obj->id);
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");

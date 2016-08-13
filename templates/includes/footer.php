@@ -23,6 +23,10 @@
     
     <!-- mascara -->
 	<script src="../js/mask.js" type="text/javascript"></script>
+	<!-- Data table -->
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+	<!-- Insere target na table -->
+	<script src="../js/meujs.js" type="text/javascript"></script>
 	
 </body>
 

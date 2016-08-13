@@ -1,3 +1,6 @@
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
+$(document).ready( function () {
+    $('#insereTarefa').DataTable({
+    	"bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+    });
+} );

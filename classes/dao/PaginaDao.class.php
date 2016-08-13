@@ -27,7 +27,7 @@ class PaginaDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				DELETE FROM paginas WHERE pagina_id = ?;
+				DELETE FROM paginas WHERE paginas_id = ?;
 			");
 			$stm->bindValue(1, $id);
 			// Executa o comando
@@ -73,7 +73,7 @@ class PaginaDao {
 					SELECT 
 						p.*
 					FROM 
-						db_tcc.usuarios AS u
+						dbtcc.usuarios AS u
 							left JOIN usuarios_paginas AS up
 								ON u.usuario_id = up.usuario_id
 							left JOIN paginas AS p

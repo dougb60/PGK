@@ -176,11 +176,11 @@ public function carregar($id){
 				SELECT 
 					u.usuario_id
 				FROM 
-					db_tcc.usuarios AS u
+					dbtcc.usuarios AS u
 						left JOIN usuarios_paginas AS up
 							ON u.usuario_id = up.usuario_id
 						left JOIN paginas AS p
-							ON p.pagina_id = up.pagina_id
+							ON p.paginas_id = up.paginas_id
 				WHERE 
 					u.login = ? 
 					AND p.nome = ?;
@@ -196,6 +196,32 @@ public function carregar($id){
 			echo "Erro no carregar: " . $e->getMessage();
 		}
 		return $objeto;
+	}
+	public function validar($obj){
+		$objetos = array();
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				SELECT nome FROM usuarios
+				WHERE login = ?;
+			");
+			$stm->bindValue(1, $obj);
+			// Executa o comando
+			$resp = $stm->execute();
+	
+			if($resp && $stm->rowCount()){
+				$objetos = $stm->fetchAll(
+						PDO::FETCH_OBJ
+						);
+			}
+			return $objetos;
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
 	}
 	
 }

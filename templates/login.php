@@ -1,23 +1,27 @@
 <?
-require_once "../classes/entidades/Entidade.class.php";
-require_once "../classes/dao/ConexaoDB.class.php";
-require_once "../classes/dao/UsuarioDao.class.php";
+require_once "includes/header-login.php";
 
-$dao = new UsuarioDao();
+
+
 $obj = new Entidade();
+$dao = new UsuarioDao();
 
 $login = isset($_POST["login"])? $_POST["login"] :"";
 $senha = isset($_POST["senha"])? $_POST["senha"] :"";
 
 if ($login != "" && $senha != ""){
+	
 	$obj = $dao->validaLogin($login, $senha);
+	
 	if ($obj == ""){
 		$_SESSION["usuario_logado"] = "";
 		header("Location: login.php");
+		
 	} else {
 			
 		$_SESSION["usuario_logado"] = $login;
 		header("Location: index.php");
+		
 	}
 }
     

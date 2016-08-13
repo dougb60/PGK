@@ -3,7 +3,8 @@
 	
 	if(count($_GET)>0){
 		$dao = new TarefaDao();
-		$dao->excluir($_GET["id"]);
+		$teste = $dao->excluir($_GET["id"]);
+		
 		echo "Tarefa deletada com sucesso";
 	}
 	
@@ -41,17 +42,20 @@
 					<td><?= $objeto->descricao ?></td>
 					<!-- envia GET para alterar usuario -->
 					<td><a href="altera-tarefa.php
-					?id=<?= $objeto->usuario_id?>
+					?id=<?= $objeto->tarefas_id?>
 					&nome=<?= $objeto->nome ?>
-					&email=<?= $objeto->email ?>
-					&fone=<?= $objeto->telefone ?>
+					&descricao=<?= $objeto->descricao ?>
+					
 					&op=alterar" >
 					<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
 					<!-- Envia GET para excluir usuario -->
-					<td><a href="#
-					?id=<?= $objeto->usuario_id ?>
+					<td><a href="lista-tarefa.php
+					?id=<?= $objeto->tarefas_id ?>
 					&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
-					
+					<script>
+						function exclui(){
+						alert('Tarefa Excluida com sucesso');}
+						</script>
 					</tr>
 					<?} ?>
 					
