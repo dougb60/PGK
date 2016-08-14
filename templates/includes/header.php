@@ -54,9 +54,14 @@
 
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
-    <!-- Data Table -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-
+    <!-- Data Table 
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">-->
+	<link href="../css/jquery.dataTables.css" rel="stylesheet">
+	<link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<script src="../js/jquery-1.12.3.js"></script>
+	<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
+	
     <!-- Morris Charts CSS -->
     <link href="../css/plugins/morris.css" rel="stylesheet">
 

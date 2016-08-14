@@ -6,6 +6,7 @@ $lista = $dao->listar("");
 if(count($_POST) > 0){
 
 	$obj = Entidade::getObject($_POST);
+	
 	$validar = $tarefa->validar($obj);
 	if($validar){
 		echo "Esta tarefa ja foi atribuida a este projeto";
@@ -49,11 +50,7 @@ if(count($_POST) > 0){
 	      		<label for="tarefa" class="col-sm-3 control-label">Inserir Tarefa</label>
 	    			<div class="col-sm-6">
 	      				  <select name="tarefa" class="form-control" id="tarefa" >
-							<?
-				 				/*Preenche select com tarefa*/
-				 				foreach ($lista as $contador => $objeto){ ?>
-				 				<option  value="<?= $objeto->tarefas_id?>"><?= $objeto->nome?></option>
-				 			<?}?>	
+							
 	      				</select>
 	    			</div>
 	  		</div>-->
@@ -72,7 +69,7 @@ if(count($_POST) > 0){
 	  		</div>
 	  			<div class="form-group">
 	  				<div class="col-sm-offset-3 col-sm-6">
-		  				<table class="table table-striped">
+		  				<table id="example" class="table table-striped" >
 			  				<thead>
 			  					<tr>
 				  					<th>Nome</th>
@@ -81,11 +78,17 @@ if(count($_POST) > 0){
 			  					</tr>
 			  				</thead>
 			  				<tbody>
+			  					<?
+				 				/*Preenche table com tarefa*/
+				 				foreach ($lista as $contador => $objeto){ ?>
+				 				
+				 					
 			  					<tr>
-			  						<td></td>
-			  						<td></td>
-			  						<td></td>
+			  						<td><?= $objeto->nome?></td>
+			  						<td><?= $objeto->descricao?></td>
+			  						<td><input type="radio" name="tarefa" value="<?= $objeto->tarefas_id?>" required></td>
 			  					</tr>
+			  					<?}?>
 			  				</tbody>
 			  			</table>
 			  		</div>
@@ -100,6 +103,10 @@ if(count($_POST) > 0){
 	</div>
 </div>
 
-    
+  <script>
+	$(document).ready(function() {
+    $('#example').DataTable();
+	});
+	</script>  
 	        
 <?php include_once 'includes/footer.php';?>

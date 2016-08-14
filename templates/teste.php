@@ -1,19 +1,29 @@
-
-	<form id="teste">
-		<div>
-		<input name="email" placeholder="buceta!" type="text">
-		</div>
-		<div>
-		<input type="submit" value="porra" id="submit-button">
-		</div>
-	</form>
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"</script>
-	<script src="additional-methods.min.js"</script>
-    
-	<script src="valida.js"></script>
-	
-	
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"</script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"</script>
-	<script src="../js/meujs/valida.js"></script>
+<html>
+	<head>	
+		<script src="../js/jquery-1.12.3.js" type="text/javascript"></script>
+		<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(function(){
+				$('#teste').DataTable()
+				});
+		</script>
+	</head>
+	<body>
+		<table id="teste">
+			<thead>
+				<tr>
+					<th>teste 1</th>
+					<th>teste 2</th>
+					<th>teste 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>teste 1</td>
+					<td>teste 2</td>
+					<td>teste 3</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
