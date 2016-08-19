@@ -30,7 +30,8 @@ $lista = $dao->listar($get);
 	                <!-- /.row -->
 	                <!-- Lista -->
 		
-				<table class="table table-striped">
+				<table id="example" class="table table-striped">
+				<thead>
 				<tr>
 					<th>Nome da tarefa</th>
 					<th>Descrição</th>
@@ -40,6 +41,7 @@ $lista = $dao->listar($get);
 					<th>Situação</th>
 					
 				</tr>
+				</thead>
 			<tbody>
 				<? foreach ($lista as $contador => $objeto){
 					$df = explode("-", $objeto->dini);
@@ -61,6 +63,10 @@ $lista = $dao->listar($get);
 				<? } ?>			
 			</tbody>
 		</table>
-		
+			<script>
+	$(document).ready(function() {
+    $('#example').DataTable();
+	});
+	</script> 
 
 <? include_once 'includes/footer.php' ?>

@@ -29,14 +29,16 @@
 	                <!-- /.row -->
 	                <!-- Lista -->
 	                
-	<table class="table table-striped">
-		
+	<table class="table table-striped" id="example">
+		<thead>
 			<tr>
 				<th>Nome</th>
 				<th>Descrição</th>
 				<th>Alterar</th>
 				<th>Excluir</th>
 			</tr>
+			</thead>
+			<tbody>
 				<? foreach ($lista as $contador => $objeto){ ?>
 					<td><?= $objeto->nome ?></td>
 					<td><?= $objeto->descricao ?></td>
@@ -64,6 +66,11 @@
 						
 		</tbody>
 	</table>
+	<script>
+	$(document).ready(function() {
+    $('#example').DataTable();
+	});
+	</script> 
 	
 <?
 	include_once 'includes/footer.php';

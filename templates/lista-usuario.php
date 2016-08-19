@@ -32,8 +32,8 @@ if(count($_GET)>0){
                 
                 <!-- /.row -->
                 <!-- Form -->
-    <table class="table table-striped" id="teste">
-  			
+    <table id="example" class="table table-striped" >
+  			<thead>
   			<tr>
 				<th>Registro</th>
 				<th>Login</th>
@@ -44,7 +44,10 @@ if(count($_GET)>0){
 				<th>Excluir</th>
 				
 			</tr>
+			</thead>
+			<tbody>
 	<? foreach ($lista as $contador => $objeto){ ?>
+	
 				<tr>
 					<td><?= $objeto->nome ?></td>
 					<td><?= $objeto->login ?></td>
@@ -70,8 +73,13 @@ if(count($_GET)>0){
 					</tr>
 					<?} ?>
 					
-				
+				</tbody>
     </table>
+      <script>
+	$(document).ready(function() {
+    $('#example').DataTable();
+	});
+	</script> 
 <?php 
 include_once 'includes/footer.php';
 ?>

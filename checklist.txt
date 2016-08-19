@@ -16,6 +16,7 @@ Classificação de urgência:
 8 - criar alertas do sistema - relatorios : médio;
 9 - criar a view lista-projeto-tarefa conforme sugestão wesley: Muito urgente;
 10 - alterar tarefa?
-11 - data table para todos os listar: urgente; -> começar
+11 - data table para todos os listar: urgente; Done.
 12 - inserir link para 'inserir novo dado' nos cadastros;
-13 - designar usuário para insere-tarefa: urgente;
+13 - designar usuário para insere-tarefa: urgente; -> começar
+14 - controlar status tarefas - insere-tarefa: muito urgente;

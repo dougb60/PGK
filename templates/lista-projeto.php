@@ -24,8 +24,8 @@
                     </div>
                 </div>
 <!-- Lista -->
-<table class="table table-striped">
-  			
+<table id="example" class="table table-striped">
+  			<thead>
   			<tr>
 				<th>Nome do Projeto</th>
 				<th>Descrição</th>
@@ -36,6 +36,8 @@
 				<th>Inserir tarefa</th>
 				<th>Listar tarefas</th>
 			</tr>
+			</thead>
+			<tbody>
 			<? foreach ($lista as $contador => $objeto){
 				$df = explode("-", $objeto->data_inicio);
 				$objeto->data_inicio_formatada = $df[2] ."/". $df[1] ."/". $df[0];
@@ -67,18 +69,24 @@
 <a href="insere-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+	&op=inserir"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i></a></td>
 
 					<td>
 <a href="lista-projeto-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-list"></i></a></td>
+	&op=inserir"><i class="fa fa-list fa-lg"></i></a></td>
 					
 				</tr>
 			<? } ?>
 <!-- fim envia GET -->
+</tbody>
 </table>
+<script>
+	$(document).ready(function() {
+    $('#example').DataTable();
+	});
+	</script> 
 <!-- Fim lista -->
 	</div>
 </div>
