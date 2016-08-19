@@ -77,7 +77,7 @@ class PaginaDao {
 							left JOIN usuarios_paginas AS up
 								ON u.usuario_id = up.usuario_id
 							left JOIN paginas AS p
-								ON p.pagina_id = up.pagina_id
+								ON p.paginas_id = up.paginas_id
 					WHERE 
 						u.usuario_id = ?;
 				");

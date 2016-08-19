@@ -6,35 +6,38 @@
 	require_once "../classes/dao/ProjetoDao.class.php";
 	require_once "../classes/dao/TarefaDao.class.php";
 	require_once "../classes/dao/InsereTarefaDao.class.php";
+	require_once "../classes/dao/UsuarioPaginaDao.class.php";
 	
-/*// Verifica em qual página estou
-	$url = $_SERVER["REQUEST_URI"];	
-	$url = explode('/', $_SERVER["REQUEST_URI"]);
-	$pagina = $url[count($url) - 1];
-	
-	 Inicia a sessão do PHP
-	$SID = session_id();
-	if(empty($SID)){
-		session_start();
-	}
-	
-	// Verifica se o usuário pode acessar a página
-	$usuario_logado = isset($_SESSION["usuario_logado"]) && $_SESSION["usuario_logado"] != ""
-		? $_SESSION["usuario_logado"]
-		: "";	
-	
-	if (
-		$usuario_logado != "" && $pagina != "login.php"
-	){
-		$dao = new UsuarioDao();
-		$pode_acessar = 
-			$dao->validaAcesso($usuario_logado, $pagina);
-		if ($pode_acessar == ""){
-			//header("Location: login.php");
-		} 
-	} else if ($pagina != "login.php"){
-		header("Location: login.php");
-	}*/
+// Verifica em qual página estou
+ // Verifica em qual página estou
+    $url = $_SERVER["REQUEST_URI"];
+    $url = explode('/', $_SERVER["REQUEST_URI"]);
+    $pagina = $url[count($url) - 1];
+
+    $posicao = strpos($pagina, "?");
+    $pagina = ($posicao === FALSE) ? $pagina : substr($pagina, 0, $posicao);
+    //echo $pagina ; exit;
+    // Inicia a sessão do PHP
+    $SID = session_id();
+    if (empty($SID)) {
+        session_start();
+    }
+
+   
+
+    // Verifica se o usuário pode acessar a página
+    $usuario_logado = isset($_SESSION["usuario_logado"]) && $_SESSION["usuario_logado"] != "" ? $_SESSION["usuario_logado"] : "";
+
+    if ($usuario_logado != "" && $pagina != "login.php") {
+
+        $dao = new UsuarioDao();
+        $pode_acessar = $dao->validaAcesso($usuario_logado, $pagina);
+        if ($pode_acessar == "") {
+            header("Location: 403.html");
+        }
+    } else if ($pagina != "login.php") {
+        header("Location: 403.html");
+    }
 	?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -157,6 +160,9 @@
                             </li>
                             <li>
                                 <a href="lista-usuario.php">Listar Usuario</a>
+                            </li>
+                            <li>
+                                <a href="lista-usuario-pagina.php">Acessos</a>
                             </li>
                         </ul>
                         <a href="javascript:;" data-toggle="collapse" data-target="#projeto"><i class="fa fa-file-text"></i> Projetos <i class="fa fa-fw fa-caret-down"></i></a>
