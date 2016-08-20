@@ -1,14 +1,21 @@
 <?php 
 	include_once 'includes/header.php';
 	
-	
+	/* valida o usuario da pagina */
+	$dao = new UsuarioDao();
+	$listar = $dao->listar($usuario_logado);
+	foreach ($listar as $key => $objeto){
+		
+	}
+	$id = $objeto->usuario_id;
 	if(count($_GET)>0){
 		$dao = new ProjetoDao();
 		$dao->excluir($_GET["id"]);
 		echo "Projeto deletado com sucesso";
 	}
 	$dao = new ProjetoDao();
-	$lista = $dao->listar("");
+	$lista = $dao->listar("",$id);//retorno apenas os projetos ativos do usuario logado
+	
 ?>
 
 <!-- header -->

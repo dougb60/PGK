@@ -1,13 +1,18 @@
 <?php 
 	include_once 'includes/header.php';
 	
+	$usu = new UsuarioDao();
+	$id = $usu->listar($usuario_logado);
+	
+	
 	if(count($_POST) > 0){
 	
 		$obj = Entidade::getObject($_POST);
 		$dao = new ProjetoDao();
 		$nome = $dao->validar($obj->nome);
 		$dump;
-	
+		
+		
 	
 		if($nome) {
 	
@@ -17,7 +22,8 @@
 			if ($obj->dini > $obj->dfim){
 				echo "Verifique o prazo do seu projeto";
 			}else{
-				$dao->inserir($obj);
+				$teste = $dao->inserir($obj);
+			
 				header("Location: lista-projeto.php");
 
 			}
@@ -61,6 +67,10 @@
 		    <div class="col-sm-6">
 		      <input type="date" name="dfim" class="form-control" id="dfim" placeholder="Fim" required>
 		    </div>
+		    <? foreach ($id as $key => $objeto){
+		    	
+		    }?>
+		    <input type="hidden" name="usuid" class="form-control"  value="<?= $objeto->usuario_id;?>">
 		  </div>
 		  <div class="form-group">
 		    <div class="col-sm-offset-3 col-sm-9">

@@ -38,6 +38,7 @@
     } else if ($pagina != "login.php") {
         header("Location: 403.html");
     }
+    
 	?>
 <!DOCTYPE html>
 <html lang="pt-BR">

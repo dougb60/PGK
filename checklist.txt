@@ -20,3 +20,5 @@ Classificação de urgência:
 12 - inserir link para 'inserir novo dado' nos cadastros;
 13 - designar usuário para insere-tarefa: urgente; -> começar
 14 - controlar status tarefas - insere-tarefa: muito urgente;
+15 - cadastra projeto inserindo id usu logado: urgente -> Done;
+16 - limitar acesso projeto ao admin projeto: Muito urgente; ->Done;

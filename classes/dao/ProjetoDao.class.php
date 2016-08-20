@@ -10,13 +10,13 @@ class ProjetoDao {
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				INSERT INTO projetos (nome, descricao, data_inicio, data_fim, estados_id, usuarios_id) 
-				VALUES (?, ?, ?, ?, 1, 23);
+				VALUES (?, ?, ?, ?, 1, ?);
 			");
 			$stm->bindValue(1, $obj->nome);
 			$stm->bindValue(2, $obj->descricao);
 			$stm->bindValue(3, $obj->dini);
 			$stm->bindValue(4, $obj->dfim);
-			
+			$stm->bindValue(5, $obj->usuid);
 			
 			// Executa o comando
 			if(!$stm->execute()){
@@ -103,7 +103,7 @@ class ProjetoDao {
 			echo "Erro no inserir: " . $e->getMessage();
 		}
 	}
-	public function listar($obj){
+	public function listar($obj, $obj2){
 		$objetos = array();
 		try {
 			// Abre a conexão com o banco de dados
@@ -111,9 +111,11 @@ class ProjetoDao {
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				SELECT * FROM projetos
-				WHERE nome LIKE ?;
+				WHERE nome LIKE ?
+				AND usuarios_id = ?;
 			");
 			$stm->bindValue(1, "%$obj%");
+			$stm->bindValue(2, $obj2);
 			// Executa o comando
 			$resp = $stm->execute();
 				
