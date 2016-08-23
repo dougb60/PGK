@@ -4,6 +4,7 @@ $dao = new UsuarioDao();
 $lista = $dao->listar("");
 if(count($_GET)>0){
 	$dao = new UsuarioDao();
+	
 	$dao->excluir($_GET["id"]);
 	
 	header("Location: lista-usuario.php");

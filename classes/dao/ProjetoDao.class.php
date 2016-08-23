@@ -64,7 +64,7 @@ class ProjetoDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				DELETE FROM projetos WHERE projeto_id = ?;
+				UPDATE projetos set status = ('I') WHERE projeto_id = ?;
 			");
 			$stm->bindValue(1, $id);
 			// Executa o comando
@@ -112,7 +112,8 @@ class ProjetoDao {
 			$stm = $con->prepare("
 				SELECT * FROM projetos
 				WHERE nome LIKE ?
-				AND usuarios_id = ?;
+				AND usuarios_id = ?
+				AND status = 'A'
 			");
 			$stm->bindValue(1, "%$obj%");
 			$stm->bindValue(2, $obj2);

@@ -7,7 +7,7 @@ class UsuarioDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				INSERT INTO usuarios (login, senha, nome, email, telefone) 
+				INSERT INTO usuarios (login, senha, nome, email, telefone, cel,'A') 
 				VALUES (?, ?, ?, ?, ?);
 			");
 			$stm->bindValue(1, $obj->login);
@@ -15,6 +15,7 @@ class UsuarioDao {
 			$stm->bindValue(3, $obj->nome);
 			$stm->bindValue(4, $obj->email);
 			$stm->bindValue(5, $obj->fone);
+			$stm->bindValue(6, $obj->fone);
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
@@ -35,13 +36,15 @@ class UsuarioDao {
 				UPDATE usuarios SET
 					nome = ?,
 					email = ?,
-					telefone = ?
+					telefone = ?,
+					cel = ?
 				WHERE usuario_id = ?;
 			");
 			$stm->bindValue(1, $obj->nome);
 			$stm->bindValue(2, $obj->email);
 			$stm->bindValue(3, $obj->fone);
 			$stm->bindValue(4, $obj->id);
+			
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
@@ -59,7 +62,7 @@ class UsuarioDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				DELETE FROM usuarios WHERE usuario_id = ?;
+				UPDATE usuarios set status =('I') WHERE usuario_id = ?;
 			");
 			$stm->bindValue(1, $id);
 			// Executa o comando
@@ -80,7 +83,8 @@ class UsuarioDao {
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				SELECT * FROM usuarios
-				WHERE login LIKE ?;
+				WHERE login LIKE ?
+				AND status = 'A';
 			");
 			$stm->bindValue(1, "%$login%");
 			// Executa o comando
