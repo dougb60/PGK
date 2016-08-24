@@ -23,3 +23,4 @@ Classificação de urgência:
 15 - cadastra projeto inserindo id usu logado: urgente -> Done;
 16 - limitar acesso projeto ao admin projeto: Muito urgente; ->Done;
 17 - arrumar mascara celular usuário: urgente.
+18 - Listar usuários por projeto: médio;
