@@ -7,6 +7,7 @@ include_once 'includes/header.php';
 	echo "Projeto deletado com sucesso";
 }*/
 $get = ($_GET);
+
 $dao = new InsereTarefaDao();
 $lista = $dao->listar($get);
 
@@ -39,6 +40,7 @@ $lista = $dao->listar($get);
 					<th>Inicio</th>
 					<th>Prazo</th>
 					<th>Situação</th>
+					<th>Atribuir</th>
 					
 				</tr>
 				</thead>
@@ -55,7 +57,12 @@ $lista = $dao->listar($get);
 						<td><?= $objeto->usuario?></td>
 						<td><?= $objeto->data_inicio_formatada  ?></td>
 						<td><?= $objeto->data_fim_formatada ?></td>
-						<td><?= $objeto->estado?></td>	
+						<td><?= $objeto->estado?></td>
+						<td>
+						<form action="http://google.com">
+    					<input type="submit" class="btn btn-info" value="Atribuir" />
+						</form>
+						</td>	
 					
 
 					

@@ -1,11 +1,17 @@
 <?php include_once 'includes/header.php';
+
+$usu = new UsuarioDao();
+$id = $usu->listar($usuario_logado);
+
 $get = ($_GET);
+
 $dao = new TarefaDao();
 $tarefa = new InsereTarefaDao();
 $lista = $dao->listar("");
 if(count($_POST) > 0){
 
 	$obj = Entidade::getObject($_POST);
+	
 	
 	$validar = $tarefa->validar($obj);
 	if($validar){
@@ -15,8 +21,12 @@ if(count($_POST) > 0){
 		if ($obj->dini > $obj->dfim){
 			echo "Verifique o prazo da sua tarefa";
 		}else{
+		
 		$tarefa->inserir($obj);
-		//header("Location: lista-projeto.php");
+		
+		
+		header('Location: lista-projeto-tarefa.php?id='.$get["id"]);
+		
 		echo "tarefa inclusa";
 	}
   }
@@ -65,7 +75,7 @@ if(count($_POST) > 0){
 	    		<div class="col-sm-6">
 	      			<input type="date" name="dfim" class="form-control" id="dfim" placeholder="Fim" required>
 	    		</div>
-	    			<input type="hidden" name="projeto" value="<?= $get["id"]?>">
+	    			<input type="hidden" name="id" value="<?= $get["id"]?>">
 	  		</div>
 	  			<div class="form-group">
 	  				<div class="col-sm-offset-3 col-sm-6">
@@ -93,6 +103,10 @@ if(count($_POST) > 0){
 			  			</table>
 			  		</div>
 		  		</div>
+		  		<? foreach ($id as $key => $objeto){
+		    	
+		    	}?>
+		    <input type="hidden" name="usuid" class="form-control"  value="<?= $objeto->usuario_id;?>">
 	  		<div class="form-group">
 	    		<div class="col-sm-offset-3 col-sm-6">
 	      			<button type="submit" class="btn btn-primary">Registrar</button>

@@ -2,12 +2,21 @@
 include_once 'includes/header.php';
 $dao = new UsuarioDao();
 $lista = $dao->listar("");
+
+
 if(count($_GET)>0){
 	$dao = new UsuarioDao();
+	$valida = $dao->validaLig($_GET["id"]);
 	
+	
+	if ($valida){
+		echo "Este usuário pertence a um projeto ativo";
+	}else {
 	$dao->excluir($_GET["id"]);
 	
 	header("Location: lista-usuario.php");
+	echo "Usuario deletado com sucesso";
+	}
 	
 	
 }
@@ -67,10 +76,7 @@ if(count($_GET)>0){
 					<td><a href="lista-usuario.php
 					?id=<?= $objeto->usuario_id ?>
 					&op=excluir" onclick="exclui()"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
-					<script>
-						function exclui(){
-						alert('Usuario Excluido com sucesso');}
-						</script>
+					
 					</tr>
 					<?} ?>
 					

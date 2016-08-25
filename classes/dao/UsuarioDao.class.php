@@ -7,15 +7,15 @@ class UsuarioDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				INSERT INTO usuarios (login, senha, nome, email, telefone, cel,'A') 
-				VALUES (?, ?, ?, ?, ?);
+				INSERT INTO usuarios (login, senha, nome, email, telefone, cel, status, tipo) 
+				VALUES (?, ?, ?, ?, ?, ?, 'A', 'user');
 			");
 			$stm->bindValue(1, $obj->login);
 			$stm->bindValue(2, $obj->senha);
 			$stm->bindValue(3, $obj->nome);
 			$stm->bindValue(4, $obj->email);
 			$stm->bindValue(5, $obj->fone);
-			$stm->bindValue(6, $obj->fone);
+			$stm->bindValue(6, $obj->cel);
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
@@ -212,6 +212,74 @@ public function carregar($id){
 				WHERE login = ?;
 			");
 			$stm->bindValue(1, $obj);
+			// Executa o comando
+			$resp = $stm->execute();
+	
+			if($resp && $stm->rowCount()){
+				$objetos = $stm->fetchAll(
+						PDO::FETCH_OBJ
+						);
+			}
+			return $objetos;
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
+	public function validaLig($obj){
+		$objetos = array();
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				SELECT 
+					tp.tarefas_id,
+					p.projeto_id,
+        			e.estados_id,
+    	   			u.usuario_id
+   						FROM tarefas_projetos AS tp 
+							INNER JOIN projetos AS p ON p.projeto_id = tp.projetos_id
+    						INNER JOIN estados AS e ON e.estados_id = tp.estados_id
+    						INNER JOIN usuarios AS u ON u.usuario_id =  tp.usuarios_id
+							INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
+								WHERE u.usuario_id = ? AND (p.estados_id = 1 OR p.estados_id = 2)   
+			");
+			$stm->bindValue(1, $obj);
+			// Executa o comando
+			$resp = $stm->execute();
+	
+			if($resp && $stm->rowCount()){
+				$objetos = $stm->fetchAll(
+						PDO::FETCH_OBJ
+						);
+			}
+			return $objetos;
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
+	public function validaUp(){
+		$objetos = array();
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				SELECT
+					p.nome AS 'projeto',
+                    e.nome AS 'situacao',
+    	   			u.login,
+                    u.nome AS 'usuario'
+   						FROM projetos AS p
+    						INNER JOIN estados AS e ON e.estados_id = p.estados_id
+    						INNER JOIN usuarios AS u ON u.usuario_id =  p.usuarios_id
+								WHERE  (p.estados_id = 1 OR p.estados_id = 2)
+                                AND p.status = 'A' GROUP BY p.nome;
+			");
 			// Executa o comando
 			$resp = $stm->execute();
 	

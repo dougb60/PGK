@@ -7,10 +7,12 @@
 	
 	if(count($_POST) > 0){
 	
+		
+		
 		$obj = Entidade::getObject($_POST);
 		$dao = new ProjetoDao();
 		$nome = $dao->validar($obj->nome);
-		$dump;
+		
 		
 		
 	

@@ -10,12 +10,13 @@ Classificação de urgência:
 2 - inserir dataTable no insere-tarefa : urgente; -> Done.
 3 - validar prazo da tarefa em conformidade com prazo projeto - lista-tarefa-projeto: médio;
 4 - criar status para tarefas desativadas - lista tarefa, lista-projeto-tarefa: urgente; Done.
-5 - criar status para projetos desativados - lista projeto, lista-projeto-tarefa: urgente; Done
-6 - criar status para usuarios desativados - lista usuario, lista-projeto-tarefa: urgente; status criado, validar exclusao
+5 - criar status para projetos desativados - lista projeto, lista-projeto-tarefa: urgente; Done.
+6 - criar status para usuarios desativados - lista usuario, lista-projeto-tarefa: urgente; Done.
+19 - desvincular usuario tarefa-projeto: muito urgente; ->começar
 7 - criar relatórios - relatorios : muito urgente;
 8 - criar alertas do sistema - relatorios : médio;
 9 - criar a view lista-projeto-tarefa conforme sugestão wesley: Muito urgente;
-10 - alterar tarefa?
+10 - alterar tarefa? -> Done.
 11 - data table para todos os listar: urgente; Done.
 12 - inserir link para 'inserir novo dado' nos cadastros;
 13 - designar usuário para insere-tarefa: urgente; -> começar
@@ -23,3 +24,7 @@ Classificação de urgência:
 15 - cadastra projeto inserindo id usu logado: urgente -> Done;
 16 - limitar acesso projeto ao admin projeto: Muito urgente; ->Done;
 17 - arrumar mascara celular usuário: urgente.
+18 - Listar usuários por projeto: médio -> (refazer query, pegar tarefa-projeto)
+19 - excluir tarefa do projeto: muito urgente;
+20 - inserir campo cel no usuário: urgente;
+21 - add campo celular em altera-usuario, retirar botão limpar: médio;

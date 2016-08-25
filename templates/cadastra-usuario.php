@@ -10,7 +10,8 @@ if(count($_POST) > 0){
 	if ($nome){
 		echo "Este Login já existe";
 	}else {
-		$dao->inserir($obj);
+		$teste  = $dao->inserir($obj);
+		
 		header("Location: lista-usuario.php");
 		//var_dump();
 	}
