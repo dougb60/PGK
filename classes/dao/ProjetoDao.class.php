@@ -132,7 +132,37 @@ class ProjetoDao {
 			echo "Erro no inserir: " . $e->getMessage();
 		}
 	}
+	public function listaD($obj){
+		$objetos = array();
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				SELECT p.data_inicio AS pdini, 
+					p.data_fim AS pdfim, 
+					p.nome AS projeto
+					FROM projetos AS p
+					INNER JOIN tarefas_projetos AS tp ON tp.projetos_id = p.projeto_id
+					WHERE p.projeto_id = ?
+					GROUP BY projeto
+			");
+			$stm->bindValue(1, $obj);
+			// Executa o comando
+			$resp = $stm->execute();
 	
+			if($resp && $stm->rowCount()){
+				$objetos = $stm->fetchAll(
+						PDO::FETCH_OBJ
+						);
+			}
+			return $objetos;
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
 	
 }
 	

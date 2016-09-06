@@ -1,19 +1,16 @@
-
 <?
 include_once 'includes/header.php';
-/*if(count($_GET)>0){
-	$dao = new InsereTarefaDao();
-	$dao->excluir($_GET["id"]);
-	echo "Projeto deletado com sucesso";
-}*/
+
+
 $get = ($_GET);
 
 $dao = new InsereTarefaDao();
 $lista = $dao->listar($get);
 
+$dao = new UsuarioDao();
+$lista2 = $dao->listar("");
 ?>
-
-
+<!-- lista -->
 <div id="page-wrapper">
 	            <div class="container-fluid">
 	
@@ -21,27 +18,22 @@ $lista = $dao->listar($get);
 	                <div class="row">
 	                    <div class="col-lg-12">
 	                        <h1 class="page-header">
-	                            Lista Tarefas 
+	                            <?= $get["nome"]?>
 	                       </h1>
-	                        
-	                       
 	                    </div>
 	                </div>
-	                
 	                <!-- /.row -->
 	                <!-- Lista -->
-		
 				<table id="example" class="table table-striped">
 				<thead>
 				<tr>
-					<th>Nome da tarefa</th>
-					<th>Descrição</th>
-					<th>Usuario</th>
-					<th>Inicio</th>
-					<th>Prazo</th>
-					<th>Situação</th>
-					<th>Atribuir</th>
-					
+					<th class="col-sm-1">Nome da tarefa</th>
+					<th class="col-sm-3">Descrição</th>
+					<th class="col-sm-1">Usuario</th>
+					<th class="col-sm-2">Inicio</th>
+					<th class="col-sm-2">Prazo</th>
+					<th class="col-sm-2">Situação</th>
+					<th class="col-sm-1">Designar</th>
 				</tr>
 				</thead>
 			<tbody>
@@ -57,14 +49,41 @@ $lista = $dao->listar($get);
 						<td><?= $objeto->usuario?></td>
 						<td><?= $objeto->data_inicio_formatada  ?></td>
 						<td><?= $objeto->data_fim_formatada ?></td>
-						<td><?= $objeto->estado?></td>
-						<td>
-						<form action="http://google.com">
-    					<input type="submit" class="btn btn-info" value="Atribuir" />
-						</form>
-						</td>	
-					
-
+						<td><? if ($objeto->estados_id == 1){?>
+							<a class="btn btn-success" href="muda-estado.php
+							?projid=<?= $objeto->projeto_id?>
+							&tarid=<?= $objeto->tarefas_id?>
+							&usuid=<?= $objeto->usuario_id?>
+							&estid=<?= $objeto->estados_id?>
+							&id=<?= $get["id"]?>
+							&nome=<?= $get["nome"]?>
+							&op=alterar">Aguardando</a>
+							<? }elseif ($objeto->estados_id == 2){?>
+							<a class="btn btn-warning" href="muda-estado.php
+							?projid=<?= $objeto->projeto_id?>
+							&tarid=<?= $objeto->tarefas_id?>
+							&usuid=<?= $objeto->usuario_id?>
+							&estid=<?= $objeto->estados_id?>
+							&id=<?= $get["id"]?>
+							&nome=<?= $get["nome"]?>
+							&op=alterar">Processando</a>
+							<? }elseif ($objeto->estados_id == 3){?>
+							<a class="btn btn-primary" href="muda-estado.php
+							?projid=<?= $objeto->projeto_id?>
+							&tarid=<?= $objeto->tarefas_id?>
+							&usuid=<?= $objeto->usuario_id?>
+							&estid=<?= $objeto->estados_id?>
+							&id=<?= $get["id"]?>
+							&nome=<?= $get["nome"]?>
+							&op=alterar">Finalizado</a>
+							<?}else {echo "ERRO";}?>
+						<td><a href="insere-usuario-tp.php
+							?projid=<?= $objeto->projeto_id ?>
+							&tarid=<?= $objeto->tarefas_id ?>
+							&projeto=<?= $objeto->projeto?>
+							&tarefa=<?= $objeto->tarefa?>
+							&op=alterar"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a>
+						</td>
 					
 					</tr>
 				<? } ?>			
@@ -73,7 +92,9 @@ $lista = $dao->listar($get);
 			<script>
 	$(document).ready(function() {
     $('#example').DataTable();
+    $('#modal').DataTable();
 	});
 	</script> 
+
 
 <? include_once 'includes/footer.php' ?>

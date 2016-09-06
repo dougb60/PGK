@@ -5,7 +5,9 @@
 	require_once "../classes/dao/PaginaDao.class.php";
 	require_once "../classes/dao/ProjetoDao.class.php";
 	require_once "../classes/dao/TarefaDao.class.php";
+	
 	require_once "../classes/dao/InsereTarefaDao.class.php";
+	
 	
 // Verifica em qual página estou
 	$url = $_SERVER["REQUEST_URI"];	

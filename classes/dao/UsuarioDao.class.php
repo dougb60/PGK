@@ -244,9 +244,10 @@ public function carregar($id){
     						INNER JOIN estados AS e ON e.estados_id = tp.estados_id
     						INNER JOIN usuarios AS u ON u.usuario_id =  tp.usuarios_id
 							INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
-								WHERE u.usuario_id = ? AND (p.estados_id = 1 OR p.estados_id = 2)   
+								WHERE u.usuario_id = ? AND (p.estados_id = 1 OR p.estados_id = 2)
 			");
-			$stm->bindValue(1, $obj);
+			$stm->bindValue(1, $obj->usuid);
+			$stm->bindValue(2, $obj->projid);
 			// Executa o comando
 			$resp = $stm->execute();
 	
@@ -262,24 +263,32 @@ public function carregar($id){
 			echo "Erro no inserir: " . $e->getMessage();
 		}
 	}
-	public function validaUp(){
+	public function validaUp($obj){
 		$objetos = array();
 		try {
 			// Abre a conexão com o banco de dados
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				SELECT
-					p.nome AS 'projeto',
-                    e.nome AS 'situacao',
-    	   			u.login,
-                    u.nome AS 'usuario'
-   						FROM projetos AS p
-    						INNER JOIN estados AS e ON e.estados_id = p.estados_id
-    						INNER JOIN usuarios AS u ON u.usuario_id =  p.usuarios_id
-								WHERE  (p.estados_id = 1 OR p.estados_id = 2)
-                                AND p.status = 'A' GROUP BY p.nome;
+					SELECT 
+    	p.nome AS projeto,
+		t.nome AS tarefa,
+		t.descricao AS tdesc,			
+    	e.nome AS estado,
+		u.usuario_id,
+   		u.login,
+   		u.nome AS usuario
+				FROM tarefas_projetos AS tp 
+					INNER JOIN projetos AS p ON p.projeto_id = tp.projetos_id
+    				INNER JOIN estados AS e ON e.estados_id = tp.estados_id
+    				INNER JOIN usuarios AS u ON u.usuario_id =  tp.usuarios_id
+					INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
+					WHERE (p.estados_id = 1 OR p.estados_id = 2)
+                    AND p.status = 'A' 
+					AND (u.usuario_id = ?)
+					GROUP BY p.nome ;
 			");
+			$stm->bindValue(1, $obj["id"]);
 			// Executa o comando
 			$resp = $stm->execute();
 	
@@ -295,7 +304,52 @@ public function carregar($id){
 			echo "Erro no inserir: " . $e->getMessage();
 		}
 	}
+	public function excluirTP($obj){
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				UPDATE tarefas_projetos tp SET tp.usuarios_id = 4
+                WHERE tp.usuarios_id = ?;
+			");
+			$stm->bindValue(1, $obj->id);
+			// Executa o comando
+			if(!$stm->execute()){
+				throw new Exception("Erro no comando");
+			}
 	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
+	public function insereTP(Entidade $obj){
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				UPDATE tarefas_projetos tp 
+					SET tp.usuarios_id = ?
+                    WHERE tp.tarefas_id = ? 
+					AND tp.projetos_id = ?;
+			");
+			$stm->bindValue(1, $obj->usuid);
+			$stm->bindValue(2, $obj->tarid);
+			$stm->bindValue(3, $obj->projid);
+			
+				
+			// Executa o comando
+			if(!$stm->execute()){
+				throw new Exception("Erro no comando");
+			}
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
 }
 	
 	

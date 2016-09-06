@@ -30,9 +30,9 @@
 	<script src="../js/jquery.dataTables.js" type="text/javascript"></script>
 	<script src="../js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 	
-<!--
+<!-- modal -->
 
-//-->
+
 
 	<!-- Insere target na table -->
 	

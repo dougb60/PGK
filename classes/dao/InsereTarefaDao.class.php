@@ -132,6 +132,7 @@ class InsereTarefaDao {
 		INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
 					WHERE p.projeto_id = ?
 			");
+			//var_dump($obj);die();
 			$stm->bindValue(1, $obj["id"]);
 			// Executa o comando
 			$resp = $stm->execute();

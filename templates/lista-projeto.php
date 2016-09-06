@@ -38,10 +38,7 @@
 				<th>Descrição</th>
 				<th>Data de inicio</th>
 				<th>Prazo final</th>
-				<th>Alterar</th>
-				<th>Excluir</th>
-				<th>Inserir tarefa</th>
-				<th>Listar tarefas</th>
+				<th>Operações</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -65,24 +62,24 @@
 				&desc=<?= $objeto->descricao ?>
 				&dini=<?= $objeto->data_inicio ?>
 				&dfim=<?= $objeto->data_fim ?>
-				&op=alterar"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
+				&op=alterar"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> | </i></a>
 				
-									<td>
+									
 <a href="lista-projeto.php
 	?id=<?= $objeto->projeto_id ?>
-	&op=excluir"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+	&op=excluir"><i class="fa fa-trash fa-2x" aria-hidden="true"> | </i></a>
 					
-					<td>
+					
 <a href="insere-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i></a></td>
+	&op=inserir"><i class="fa fa-plus-square fa-2x" aria-hidden="true"> | </i></a>
 
-					<td>
+					
 <a href="lista-projeto-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-list fa-lg"></i></a></td>
+	&op=inserir"><i class="fa fa-list fa-2x"> </i></a></td>
 					
 				</tr>
 			<? } ?>

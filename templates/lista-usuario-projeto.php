@@ -1,9 +1,17 @@
 <?php
 include_once 'includes/header.php';
 
- $dao = new UsuarioDao();
- //$listar = $dao->listar("");
- $lista = $dao->validaUP();
+$get = $_GET;
+$dao = new UsuarioDao();
+$lista = $dao->validaUp($get);
+
+if(count($_POST) > 0){
+	$obj = Entidade::getObject($_POST);
+	$exclui = $dao->excluirTP($obj);
+	header("Location: lista-usuario.php");
+	
+}
+
 ?>
 
 <div id="page-wrapper">
@@ -16,32 +24,42 @@ include_once 'includes/header.php';
                        </h1>
                     </div>
                 </div>
-                <table id="example" class="table table-striped" >
+                <!-- /.row -->
+                <!-- Form -->
+    <table id="example" class="table table-striped" >
   			<thead>
   			<tr>
-				<th>Projeto</th>
-				<th>Situação</th>
-				<th>Login</th>
-				<th>Nome</th>
+				<th class="col-sm-2">Projeto</th>
+				<th class="col-sm-2">Tarefa</th>
+				<th class="col-sm-4">Descrição</th>
+				<th class="col-sm-1">Situação</th>
+				<th class="col-sm-1">Login</th>
+				<th class="col-sm-1">Nome</th>
+				<th class="col-sm-1">Desvincular Usuario</th>
 			</tr>
 			</thead>
 			<tbody>
 	<? foreach ($lista as $contador => $objeto){ ?>
-				<tr>
+			<tr>
 					<td><?= $objeto->projeto ?></td>
-					<td><?= $objeto->situacao ?></td>
-					<td><?= $objeto->login ?></td>
-					<td><?= $objeto->usuario ?></td>
-					<!-- envia GET para alterar usuario -->
-					</tr>
-					<?} ?>
-				</tbody>
-    </table>
-      <script>
+					<td><?= $objeto->tarefa ?></td>
+					<td><?= $objeto->tdesc ?></td>
+					<td><?= $objeto->estado?></td>
+					<td><?= $objeto->login?></td>
+					<td><?= $objeto->usuario?></td>
+					<td><form action="lista-usuario-projeto.php" method ="POST">
+						<input type = "hidden" name="id" value="<?= $objeto->usuario_id?>">
+						<button type="submit" class="btn btn-danger"><i class="fa fa-user-times fa-lg" aria-hidden="true"></i></button>
+					</form></td>
+	<?php }?>
+			</tr>
+			</tbody>
+	</table>
+	 <script>
 	$(document).ready(function() {
     $('#example').DataTable();
 	});
-	</script> 
+	  </script> 
 <?php 
 include_once 'includes/footer.php';
 ?>

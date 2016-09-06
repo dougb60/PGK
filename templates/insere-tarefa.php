@@ -8,15 +8,27 @@ $get = ($_GET);
 $dao = new TarefaDao();
 $tarefa = new InsereTarefaDao();
 $lista = $dao->listar("");
-if(count($_POST) > 0){
 
+$pdao = new ProjetoDao();
+
+$validaD = $pdao->listaD($get["id"]);
+foreach ($validaD as $key => $objeto){
+	
+}
+
+if(count($_POST) > 0){
+	
+	
 	$obj = Entidade::getObject($_POST);
 	
-	
+	if ($objeto->pdini > $obj->dini || $objeto->pdfim < $obj->dfim ){
+		echo "A data de duração da tarefa deve se enquandrar dentro do prazo do projeto!
+				</br>Inicio: ".$objeto->pdini." a ".$objeto->pdfim;
+	}else {
 	$validar = $tarefa->validar($obj);
 	if($validar){
 		echo "Esta tarefa ja foi atribuida a este projeto";
-		//var_dump($obj);die();
+		
 	}else{
 		if ($obj->dini > $obj->dfim){
 			echo "Verifique o prazo da sua tarefa";
@@ -28,6 +40,7 @@ if(count($_POST) > 0){
 		header('Location: lista-projeto-tarefa.php?id='.$get["id"]);
 		
 		echo "tarefa inclusa";
+		}
 	}
   }
 }
@@ -55,15 +68,6 @@ if(count($_POST) > 0){
 	      			<input type="text" name="nome" class="form-control" id="nome" value="<?= $get["nome"] ?>" disabled="disabled">
 	    		</div>
 	  		</div>
-	  
-	  		<!--<div class="form-group">
-	      		<label for="tarefa" class="col-sm-3 control-label">Inserir Tarefa</label>
-	    			<div class="col-sm-6">
-	      				  <select name="tarefa" class="form-control" id="tarefa" >
-							
-	      				</select>
-	    			</div>
-	  		</div>-->
 	  		<div class="form-group">
 	    		<label for="dini" class="col-sm-3 control-label">Data de inicio</label>
 	    		<div class="col-sm-6">
