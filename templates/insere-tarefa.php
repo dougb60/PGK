@@ -11,33 +11,32 @@ $lista = $dao->listar("");
 
 $pdao = new ProjetoDao();
 
-$validaD = $pdao->listaD($get["id"]);
+$validaD = $pdao->listaD($_GET["id"]);
 foreach ($validaD as $key => $objeto){
 	
 }
-
 if(count($_POST) > 0){
 	
 	
 	$obj = Entidade::getObject($_POST);
 	
 	if ($objeto->pdini > $obj->dini || $objeto->pdfim < $obj->dfim ){
-		echo "A data de duração da tarefa deve se enquandrar dentro do prazo do projeto!
-				</br>Inicio: ".$objeto->pdini." a ".$objeto->pdfim;
+		echo '<div class="alert alert-danger" role="alert">A data de duração da tarefa deve se enquandrar dentro do prazo do projeto!
+				</br>Inicio: '.$objeto->pdini = date("d/m/Y", strtotime ($objeto->pdini)).' a '.$objeto->pdfim = date("d/m/Y", strtotime ($objeto->pdfim)).'</div>';
 	}else {
 	$validar = $tarefa->validar($obj);
 	if($validar){
-		echo "Esta tarefa ja foi atribuida a este projeto";
+		echo '<div class="alert alert-danger" role="alert">Esta tarefa ja foi atribuida a este projeto</div></br>';
 		
 	}else{
 		if ($obj->dini > $obj->dfim){
-			echo "Verifique o prazo da sua tarefa";
+			echo '<div class="alert alert-danger" role="alert">Verifique o prazo da sua tarefa';
 		}else{
 		
 		$tarefa->inserir($obj);
 		
 		
-		header('Location: lista-projeto-tarefa.php?id='.$get["id"]);
+		header('Location: lista-projeto-tarefa.php?id='.$get["id"].'&nome='.$get["nome"]);
 		
 		echo "tarefa inclusa";
 		}
@@ -114,7 +113,7 @@ if(count($_POST) > 0){
 	  		<div class="form-group">
 	    		<div class="col-sm-offset-3 col-sm-6">
 	      			<button type="submit" class="btn btn-primary">Registrar</button>
-	      			<button type="reset" class="btn btn-danger">Apagar</button>
+	      			<a href="lista-projeto.php" class="btn btn-danger">Voltar</a>
 	    		</div>
 	  		</div>
 		</form>

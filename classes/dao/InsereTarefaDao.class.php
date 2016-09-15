@@ -124,7 +124,7 @@ class InsereTarefaDao {
     	e.estados_id,
     	e.nome AS estado,
    		u.usuario_id,
-   		u.nome AS usuario
+   		u.login AS usuario
 				FROM tarefas_projetos AS tp 
 		INNER JOIN projetos AS p ON p.projeto_id = tp.projetos_id
     	INNER JOIN estados AS e ON e.estados_id = tp.estados_id

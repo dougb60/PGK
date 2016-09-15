@@ -18,11 +18,11 @@
 	
 		if($nome) {
 	
-			echo "este nome ja existe <br>";
+			echo '<div class="alert alert-danger" role="alert">este nome ja existe</div><br>';
 	
 		}else {
 			if ($obj->dini > $obj->dfim){
-				echo "Verifique o prazo do seu projeto";
+				echo '<div class="alert alert-danger" role="alert">Verifique o prazo do seu projeto</div>';
 			}else{
 				$teste = $dao->inserir($obj);
 			

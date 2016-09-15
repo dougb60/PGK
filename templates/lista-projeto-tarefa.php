@@ -89,6 +89,9 @@ $lista2 = $dao->listar("");
 				<? } ?>			
 			</tbody>
 		</table>
+		<div class="col-sm-3">
+		<div><a href="pstatus.php?id=<?= $_GET["id"]?>" class="btn btn-success">Confirmar</a>
+		<a href="lista-projeto.php" class="btn btn-danger">Voltar</a></div></div>
 			<script>
 	$(document).ready(function() {
     $('#example').DataTable();

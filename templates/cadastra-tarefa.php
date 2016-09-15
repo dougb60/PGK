@@ -11,7 +11,7 @@
 	
 		if($nome) {
 	
-			echo "este nome ja existe <br>";
+			echo '<div class="alert alert-danger" role="alert">este nome ja existe</div>';
 	
 	
 		}else{

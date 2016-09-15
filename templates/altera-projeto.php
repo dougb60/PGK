@@ -11,11 +11,11 @@
 	
 		if(($get->nome != $obj["nome"]) && $nome) {
 	
-			echo "este nome ja existe <br>";
+			echo '<div class="alert alert-danger" role="alert"> este nome ja existe </div><br>';
 	
 		}else {
 			if ($get->dini > $get->dfim){
-				echo "Verifique o prazo do seu projeto";
+				echo '<div class="alert alert-danger"> Verifique o prazo do seu projeto</div>';
 			}else{
 				$dao->alterar($get);
 				header("Location: lista-projeto.php");
@@ -68,7 +68,7 @@
 	  	 	<div class="form-group">
 	    		<div class="col-sm-offset-2 col-sm-10">
 	      		<button type="submit" class="btn btn-primary">Registrar</button>
-	      		<button type="reset" class="btn btn-danger">Apagar</button>
+	      		<button type="" class="btn btn-danger" href="lista-projeto.php">Voltar</button>
 	    		</div>
 	  		</div>
 		</form>

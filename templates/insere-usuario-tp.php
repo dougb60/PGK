@@ -14,10 +14,11 @@ if(count($_POST) > 0){
 	
 	$validar = $dao->validaLig($obj);
 	if ($validar){
-		echo 'Esta tarefa já esta vinculada a este usuário ';
+		echo '<div class="alert alert-danger" role="alert">Esta tarefa já esta vinculada a este usuário</div>';
 	}else {
 		$teste = $dao->insereTP($obj);
 		echo "Usuário incluso com sucesso";
+		header('Location: lista-projeto-tarefa.php?id='.$get["projid"].'&nome='.$get["projeto"]);
 	}
 	
 }

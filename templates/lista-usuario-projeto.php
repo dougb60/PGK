@@ -2,13 +2,14 @@
 include_once 'includes/header.php';
 
 $get = $_GET;
+
 $dao = new UsuarioDao();
 $lista = $dao->validaUp($get);
 
 if(count($_POST) > 0){
 	$obj = Entidade::getObject($_POST);
 	$exclui = $dao->excluirTP($obj);
-	header("Location: lista-usuario.php");
+	header("Location: lista-usuario-projeto.php?id=".$obj->id);
 	
 }
 
@@ -49,6 +50,7 @@ if(count($_POST) > 0){
 					<td><?= $objeto->usuario?></td>
 					<td><form action="lista-usuario-projeto.php" method ="POST">
 						<input type = "hidden" name="id" value="<?= $objeto->usuario_id?>">
+						<input type = "hidden" name="tid" value="<?= $objeto->tid?>">
 						<button type="submit" class="btn btn-danger"><i class="fa fa-user-times fa-lg" aria-hidden="true"></i></button>
 					</form></td>
 	<?php }?>

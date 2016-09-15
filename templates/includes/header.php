@@ -8,6 +8,7 @@
 	require_once "../classes/dao/InsereTarefaDao.class.php";
 	require_once "../classes/dao/UsuarioPaginaDao.class.php";
 	require_once "../classes/dao/EstadoDao.class.php";
+	require_once "../classes/dao/RelatorioDao.class.php";
 	
 // Verifica em qual página estou
  // Verifica em qual página estou
@@ -56,9 +57,10 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
-
+	
     <!-- Custom CSS -->
     <link href="../css/sb-admin.css" rel="stylesheet">
+      <link href="../css/meucss.css" rel="stylesheet">
     <!-- Data Table 
     
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">-->
@@ -151,7 +153,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-bars"></i> Inicio</a>
+                        <a href="index.php"><i class="fa fa-fw fa-bars"></i> Inicio</a>
                     </li>
                     
                     <li>
@@ -189,7 +191,7 @@
                     </li>
                     
                     <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-bar-chart"></i> Relatorios</a>
+                        <a href="relatorio.php"><i class="fa fa-fw fa-bar-chart"></i> Relatorios</a>
                     </li>
                 </ul>
             </div>

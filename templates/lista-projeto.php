@@ -7,14 +7,23 @@
 	foreach ($listar as $key => $objeto){
 		
 	}
-	$id = $objeto->usuario_id;
+	if ($objeto->tipo == "user"){
+		$urlE = "403.html";
+	}else {
+		$urlE = "lista-projeto.php";
+	}
+	
+	
 	if(count($_GET)>0){
 		$dao = new ProjetoDao();
 		$dao->excluir($_GET["id"]);
-		echo "Projeto deletado com sucesso";
+		echo '<div class="alert alert-danger" role="alert">Projeto deletado com sucesso</div>';
 	}
 	$dao = new ProjetoDao();
-	$lista = $dao->listar("",$id);//retorno apenas os projetos ativos do usuario logado
+	$lista = $dao->listar("");//retorno apenas os projetos ativos do usuario logado
+	
+	
+	
 	
 ?>
 
@@ -47,6 +56,17 @@
 				$objeto->data_inicio_formatada = $df[2] ."/". $df[1] ."/". $df[0];
 				$df = explode("-", $objeto->data_fim);
 				$objeto->data_fim_formatada = $df[2] ."/". $df[1] ."/". $df[0];
+				
+				$timestamp = date("Y-m-d");
+				
+				$url = "";
+				if ($objeto->data_fim < $timestamp ){
+					$url = "#";
+					$data = "";
+				}else
+					$url = "insere-tarefa.php";
+					$data = 'data-toggle="popover" data-title="O Projeto expirou!" role="button"
+							tabindex="0" data-placement="left" data-trigger="focus"'
 			?>
 				
 					<td><?= $objeto->nome ?></td>
@@ -62,26 +82,31 @@
 				&desc=<?= $objeto->descricao ?>
 				&dini=<?= $objeto->data_inicio ?>
 				&dfim=<?= $objeto->data_fim ?>
-				&op=alterar"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> | </i></a>
+				&op=alterar" title="Alterar Projeto"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> | </i></a>
 				
 									
-<a href="lista-projeto.php
+<a  href="<?= $urlE ?>
 	?id=<?= $objeto->projeto_id ?>
-	&op=excluir"><i class="fa fa-trash fa-2x" aria-hidden="true"> | </i></a>
+	&op=excluir"  data-toggle="confirmation" data-title="Tem certeza que deseja excluir?" data-btn-Cancel-Label="Melhor não!"
+	data-btn-Ok-Label="Tenho certeza" data-singleton="true" data-btn-Ok-Class="btn-xs btn-success" 
+	data-btn-Cancel-Class="btn-xs btn-danger" >
+	<i class="fa fa-trash fa-2x" aria-hidden="true"> | </i></a>
 					
 					
-<a href="insere-tarefa.php
+<a href="<?= $url?>
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-plus-square fa-2x" aria-hidden="true"> | </i></a>
+	&op=inserir" <?= $data?>><i class="fa fa-plus-square fa-2x" aria-hidden="true"> | </i></a>
 
 					
 <a href="lista-projeto-tarefa.php
 	?id=<?= $objeto->projeto_id ?>
 	&nome=<?= $objeto->nome ?>
-	&op=inserir"><i class="fa fa-list fa-2x"> </i></a></td>
-					
-				</tr>
+	&op=inserir" title="Listar tarefa-projeto"><i class="fa fa-list fa-2x"> | </i></a>
+<a href="pstatus.php
+?id=<?= $objeto->projeto_id?>
+&nome=<?= $objeto->nome?>"
+title="Status do Projeto"><i class="fa fa-line-chart fa-2x">  </i></a></tr>
 			<? } ?>
 <!-- fim envia GET -->
 </tbody>
@@ -90,7 +115,13 @@
 	$(document).ready(function() {
     $('#example').DataTable();
 	});
-	</script> 
+	</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+	
 <!-- Fim lista -->
 	</div>
 </div>

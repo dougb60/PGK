@@ -1,0 +1,42 @@
+@CHARSET "ISO-8859-1";
+
+.box{
+	background-color: #4385F5;
+	border: 10px solid #fff;
+	color: #fff;
+	padding: 15px;
+	height: 200px;
+}
+.box2{
+	background-color: #109D59;
+	border: 10px solid #fff;
+	color: #fff;
+	padding: 15px;
+	height: 200px;
+}
+.box3{
+	background-color: #FF9000;
+	border: 10px solid #fff;
+	color: #fff;
+	padding: 15px;
+	height: 200px;
+}
+.box4{
+	background-color: #04BFBF;
+	border: 10px solid #fff;
+	color: #fff;
+	padding: 15px;
+	height: 200px;
+}
+.linha{
+	color: #fff;
+	border-top: 2px solid;
+	
+}
+
+.chart{
+	border-top: 1px solid #04BFBF;
+	 height: 400px;
+	 margin: 0 auto;
+	 min-width: 310px;
+}

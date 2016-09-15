@@ -10,7 +10,7 @@ if((count($_POST)>0)){
 	
 	if(($get->nome != $obj["nome"]) && $nome) {
 	
-		echo "este nome ja existe <br>";
+		echo '<div class="alert alert-danger" role="alert">este nome ja existe</div> ';
 	
 	}
 		else{

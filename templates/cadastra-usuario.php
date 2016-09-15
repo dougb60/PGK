@@ -8,7 +8,7 @@ if(count($_POST) > 0){
 	
 	
 	if ($nome){
-		echo "Este Login já existe";
+		echo '<div class="alert alert-danger" role="alert">Este Login já existe</div>';
 	}else {
 		$teste  = $dao->inserir($obj);
 		
@@ -60,7 +60,7 @@ if(count($_POST) > 0){
 	  <div class="form-group">
 	    <label for="cel" class="col-sm-2 control-label">Celular</label>
 	    <div class="col-sm-6">
-	      <input type="text" name="cel" class="form-control" id="cel" placeholder="ex:(99)9 9999-9999" required>
+	      <input type="text" name="cel" class="form-control" id="phone" placeholder="ex:(99)9 9999-9999" required>
 	    </div>
 	  </div>
 	  <div class="form-group">

@@ -10,12 +10,12 @@ if(count($_GET)>0){
 	
 	
 		if ($valida){
-			echo "Este usuário pertence a um projeto ativo";
+			echo '<div class="alert alert-danger" role="alert"> Este usuário pertence a um projeto ativo</div>';
 		}else {
 		$dao->excluir($_GET["id"]);
 	
 	header("Location: lista-usuario.php");
-	echo "Usuario deletado com sucesso";
+	echo '<div class="alert alert-danger" role="alert"> Usuario deletado com sucesso</div>';
 	}
 }
 ?>
@@ -61,15 +61,18 @@ if(count($_GET)>0){
 					&nome=<?= $objeto->nome ?>
 					&email=<?= $objeto->email ?>
 					&fone=<?= $objeto->telefone ?>
-					&op=alterar" >
+					&op=alterar" title="Alterar">
 					<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> | </i></a>
 					<!-- Envia GET para excluir usuario -->
 					<a href="lista-usuario-projeto.php
 					?id=<?= $objeto->usuario_id ?>
-					&op=listar" ><i class="fa fa-user-plus fa-2x" aria-hidden="true"> | </i></a>
+					&op=listar" title="Usuários por projeto" ><i class="fa fa-user-plus fa-2x" aria-hidden="true"> | </i></a>
 					<a href="lista-usuario.php
 					?id=<?= $objeto->usuario_id ?>
-					&op=excluir"><i class="fa fa-trash  fa-2x" aria-hidden="true"></i></a>
+					&op=excluir" data-toggle="confirmation" data-title="Tem certeza que deseja excluir?" data-btn-Cancel-Label="Melhor não!"
+					data-btn-Ok-Label="Tenho certeza" data-singleton="true" data-btn-Ok-Class="btn-xs btn-success" 
+					data-btn-Cancel-Class="btn-xs btn-danger" data-placement="left">
+					<i class="fa fa-trash  fa-2x" aria-hidden="true"></i></a>
 					</tr>
 					<?} ?>
 				</tbody>

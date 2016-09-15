@@ -5,7 +5,7 @@
 		$dao = new TarefaDao();
 		$teste = $dao->excluir($_GET["id"]);
 		
-		echo "Tarefa deletada com sucesso";
+		echo '<div class="alert alert-danger" role="alert">Tarefa deletada com sucesso</div>';
 	}
 	
 	$dao = new TarefaDao();

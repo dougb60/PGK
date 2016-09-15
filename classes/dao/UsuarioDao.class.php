@@ -244,10 +244,13 @@ public function carregar($id){
     						INNER JOIN estados AS e ON e.estados_id = tp.estados_id
     						INNER JOIN usuarios AS u ON u.usuario_id =  tp.usuarios_id
 							INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
-								WHERE u.usuario_id = ? AND (p.estados_id = 1 OR p.estados_id = 2)
+								WHERE tp.usuarios_id = ? 
+								AND tp.tarefas_id = ?
+								AND (p.estados_id = 1 OR p.estados_id = 2)
+								
 			");
 			$stm->bindValue(1, $obj->usuid);
-			$stm->bindValue(2, $obj->projid);
+			$stm->bindValue(2, $obj->tarid);
 			// Executa o comando
 			$resp = $stm->execute();
 	
@@ -273,7 +276,8 @@ public function carregar($id){
 					SELECT 
     	p.nome AS projeto,
 		t.nome AS tarefa,
-		t.descricao AS tdesc,			
+		t.descricao AS tdesc,
+		t.tarefas_id AS tid,
     	e.nome AS estado,
 		u.usuario_id,
    		u.login,
@@ -286,7 +290,7 @@ public function carregar($id){
 					WHERE (p.estados_id = 1 OR p.estados_id = 2)
                     AND p.status = 'A' 
 					AND (u.usuario_id = ?)
-					GROUP BY p.nome ;
+					
 			");
 			$stm->bindValue(1, $obj["id"]);
 			// Executa o comando
@@ -311,9 +315,11 @@ public function carregar($id){
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
 				UPDATE tarefas_projetos tp SET tp.usuarios_id = 4
-                WHERE tp.usuarios_id = ?;
+                WHERE tp.usuarios_id = ?
+				AND tp.tarefas_id = ?	;
 			");
 			$stm->bindValue(1, $obj->id);
+			$stm->bindValue(2, $obj->tid);
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
