@@ -19,14 +19,9 @@ $lista = $dao->listar($login);
 				</div>
 			</div>
 
-<form class="form-inline" name="form-consulta" action="" method="post">
-    <div class="form-group">
-		<input type="text" name="login" class="form-control" value="<?= $login ?>" placeholder="Digite o login" >
-	</div>
-	    <button type="submit" class="btn btn-default">Pesquisar</button>
-</form>	
 
-<table  class="table table-striped">
+
+<table  class="table table-striped" id="example">
     <thead>
         <tr>
             <th>Registro</th>
@@ -53,5 +48,23 @@ $lista = $dao->listar($login);
         <? } ?>			
     </tbody>
 </table>	
-
+<script>
+	$(document).ready(function() {
+    $('#example').DataTable({
+    	"language": {
+               	"zeroRecords": "Nenhum registro encontrado",
+    		"search":"Busca: ",
+    		"paginate": {
+    			        "first": "Primeiro",
+    			        "last":  "Ultimo",
+    			        "next":  "Proximo",
+    			        "previous":   "Anterior"
+    			    },
+    			"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+    			"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+    			"lengthMenu": "Mostrar _MENU_ entradas",
+    			}
+    		});
+	});
+	  </script> 
 <? include_once 'includes/footer.php' ?>

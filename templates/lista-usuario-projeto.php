@@ -21,7 +21,7 @@ if(count($_POST) > 0){
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Lista Usuários 
+                            Lista tarefas usuários
                        </h1>
                     </div>
                 </div>
@@ -51,6 +51,7 @@ if(count($_POST) > 0){
 					<td><form action="lista-usuario-projeto.php" method ="POST">
 						<input type = "hidden" name="id" value="<?= $objeto->usuario_id?>">
 						<input type = "hidden" name="tid" value="<?= $objeto->tid?>">
+						<input type="hidden" name="pid" value="<?= $objeto->pid?>">
 						<button type="submit" class="btn btn-danger"><i class="fa fa-user-times fa-lg" aria-hidden="true"></i></button>
 					</form></td>
 	<?php }?>
@@ -59,7 +60,21 @@ if(count($_POST) > 0){
 	</table>
 	 <script>
 	$(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+    	"language": {
+               	"zeroRecords": "Nenhum registro encontrado",
+    		"search":"Busca: ",
+    		"paginate": {
+    			        "first": "Primeiro",
+    			        "last":  "Ultimo",
+    			        "next":  "Proximo",
+    			        "previous":   "Anterior"
+    			    },
+    			"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+    			"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+    			"lengthMenu": "Mostrar _MENU_ entradas",
+    			}
+    		});
 	});
 	  </script> 
 <?php 

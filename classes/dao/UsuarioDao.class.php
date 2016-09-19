@@ -157,7 +157,8 @@ public function carregar($id){
 			$con = ConexaoDB::conectar();
 			$stm = $con->prepare("
 			SELECT * FROM usuarios 
-			WHERE login = ? AND senha = ?;
+			WHERE login = ? AND senha = ?
+			AND status='A';
 			");
 			$stm->bindValue(1, $login);
 			$stm->bindValue(2, $senha);
@@ -246,11 +247,13 @@ public function carregar($id){
 							INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id			
 								WHERE tp.usuarios_id = ? 
 								AND tp.tarefas_id = ?
+								AND tp.projetos_id = ?
 								AND (p.estados_id = 1 OR p.estados_id = 2)
 								
 			");
 			$stm->bindValue(1, $obj->usuid);
 			$stm->bindValue(2, $obj->tarid);
+			$stm->bindValue(3, $obj->projid);
 			// Executa o comando
 			$resp = $stm->execute();
 	
@@ -275,6 +278,7 @@ public function carregar($id){
 			$stm = $con->prepare("
 					SELECT 
     	p.nome AS projeto,
+		p.projeto_id as pid,
 		t.nome AS tarefa,
 		t.descricao AS tdesc,
 		t.tarefas_id AS tid,
@@ -316,10 +320,12 @@ public function carregar($id){
 			$stm = $con->prepare("
 				UPDATE tarefas_projetos tp SET tp.usuarios_id = 4
                 WHERE tp.usuarios_id = ?
+				AND tp.projetos_id = ?
 				AND tp.tarefas_id = ?	;
 			");
 			$stm->bindValue(1, $obj->id);
 			$stm->bindValue(2, $obj->tid);
+			$stm->bindValue(3, $obj->pid);
 			// Executa o comando
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
@@ -350,6 +356,44 @@ public function carregar($id){
 			if(!$stm->execute()){
 				throw new Exception("Erro no comando");
 			}
+	
+	
+		} catch(Exception $e){
+			echo "Erro no inserir: " . $e->getMessage();
+		}
+	}
+	public function validaUsuTar($obj){
+		$objetos = array();
+		try {
+			// Abre a conexão com o banco de dados
+			$con = ConexaoDB::conectar();
+			// Monta o comando para a inserção
+			$stm = $con->prepare("
+				SELECT
+					tp.tarefas_id,
+					p.projeto_id,
+        			e.estados_id,
+    	   			u.usuario_id
+   						FROM tarefas_projetos AS tp
+							INNER JOIN projetos AS p ON p.projeto_id = tp.projetos_id
+    						INNER JOIN estados AS e ON e.estados_id = tp.estados_id
+    						INNER JOIN usuarios AS u ON u.usuario_id =  tp.usuarios_id
+							INNER JOIN tarefas AS t ON t.tarefas_id = tp.tarefas_id
+								WHERE tp.usuarios_id = ?
+								
+								AND (p.estados_id = 1 OR p.estados_id = 2)
+	
+			");
+			$stm->bindValue(1, $obj);
+			// Executa o comando
+			$resp = $stm->execute();
+	
+			if($resp && $stm->rowCount()){
+				$objetos = $stm->fetchAll(
+						PDO::FETCH_OBJ
+						);
+			}
+			return $objetos;
 	
 	
 		} catch(Exception $e){

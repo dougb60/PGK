@@ -94,8 +94,21 @@ $lista2 = $dao->listar("");
 		<a href="lista-projeto.php" class="btn btn-danger">Voltar</a></div></div>
 			<script>
 	$(document).ready(function() {
-    $('#example').DataTable();
-    $('#modal').DataTable();
+    $('#example').DataTable({
+    	"language": {
+               	"zeroRecords": "Nenhum registro encontrado",
+    		"search":"Busca: ",
+    		"paginate": {
+    			        "first": "Primeiro",
+    			        "last":  "Ultimo",
+    			        "next":  "Proximo",
+    			        "previous":   "Anterior"
+    			    },
+    			"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+    			"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+    			"lengthMenu": "Mostrar _MENU_ entradas",
+    			}
+    		});
 	});
 	</script> 
 

@@ -122,7 +122,22 @@ if(count($_POST) > 0){
 
   <script>
 	$(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+			"info":false,
+    		"language": {
+           	"zeroRecords": "Nenhum registro encontrado",
+		"search":"Busca: ",
+		"paginate": {
+			        "first": "Primeiro",
+			        "last":  "Ultimo",
+			        "next":  "Proximo",
+			        "previous":   "Anterior"
+			    },
+			"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+			"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+			"lengthMenu": "Mostrar _MENU_ entradas",
+				}
+			});
 	});
 	</script>  
 	        

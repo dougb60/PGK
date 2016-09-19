@@ -2,7 +2,7 @@
 require_once "includes/header-login.php";
 
 
-
+$erro = "";
 $obj = new Entidade();
 $dao = new UsuarioDao();
 
@@ -15,7 +15,9 @@ if ($login != "" && $senha != ""){
 	
 	if ($obj == ""){
 		$_SESSION["usuario_logado"] = "";
-		header("Location: login.php");
+		$erro = '<div class="alert alert-danger col-sm-offset-4 col-sm-5" style="text-align:center;">
+				Erro ao tentar logar, por favor entre em contato
+				com o administrador.</div>';
 		
 	} else {
 			
@@ -36,7 +38,7 @@ if ($login != "" && $senha != ""){
     
     
     
-    
+    	<link href="../css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/style.css">
 
     
@@ -61,12 +63,12 @@ if ($login != "" && $senha != ""){
 		</div>
 
 		<div class="footer">
-		<input type="submit" class="button" value="login">
+		<input type="submit" class="button" value="login" onclick="alerta()">
 		<a href="#" class="button">Registrar</a>
 		</div>
 	
 	</form>
-    
+    <div><?= $erro?></div>
     
     
     

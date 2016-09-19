@@ -40,25 +40,25 @@
 		  <form class="form-horizontal" name="form" action="" method="POST">
 	  	  	<div class="form-group">
 	    		<label for="nome" class="col-sm-2 control-label">Nome</label>
-	    			<div class="col-sm-10">
+	    			<div class="col-sm-6">
 	      				<input type="text" name="nome" class="form-control" id="nome" value="<?= $obj["nome"] ?>" required>
 	    			</div>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="descricao" class="col-sm-2 control-label">Descrição</label>
-	    		<div class="col-sm-10">
+	    		<div class="col-sm-6">
 	      			<input type="text" name="descricao" class="form-control" id="descricao" value="<?= $obj["desc"] ?>" required>
 	    		</div>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="dini" class="col-sm-2 control-label">Data inicial</label>
-	    		<div class="col-sm-10">
+	    		<div class="col-sm-6">
 	      			<input type="date" name="dini" class="form-control" id="dini" value="<?= $obj["dini"] ?>" required>
 	    		</div>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="dfim" class="col-sm-2 control-label">Data Final</label>
-	    		<div class="col-sm-10">
+	    		<div class="col-sm-6">
 	      			<input type="date" name="dfim" class="form-control" id="dfim" value="<?= $obj["dfim"] ?>" required>
 	    		</div>
 	  		</div>
@@ -66,7 +66,7 @@
 	        	<input type="hidden" name="id" value="<?= $obj["id"]?>">
 	    	</div>
 	  	 	<div class="form-group">
-	    		<div class="col-sm-offset-2 col-sm-10">
+	    		<div class="col-sm-offset-2 col-sm-6">
 	      		<button type="submit" class="btn btn-primary">Registrar</button>
 	      		<button type="" class="btn btn-danger" href="lista-projeto.php">Voltar</button>
 	    		</div>

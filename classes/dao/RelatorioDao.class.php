@@ -236,6 +236,42 @@
 				echo "Erro no inserir: " . $e->getMessage();
 			}
 		}
+		public function listaTpAtr(){
+			$objetos = array();
+			try {// Abre a conexão com o banco de dados
+				$con = ConexaoDB::conectar();
+				// Monta o comando para a inserção
+				$stm = $con->prepare("
+					/* select com tarefa atrasada e tempo atrasado */
+					SELECT
+					p.nome AS pnome,
+					tp.data_fim,
+					t.nome AS tnome, 
+					u.login AS unome, 
+					e.nome AS enome, 
+					DATEDIFF(CURDATE(),tp.data_fim) AS tempo_atraso 
+					FROM tarefas_projetos AS tp
+					INNER JOIN usuarios AS u ON tp.usuarios_id = u.usuario_id
+					INNER JOIN projetos AS p ON tp.projetos_id = p.projeto_id
+					INNER JOIN tarefas AS t ON tp.tarefas_id = t.tarefas_id
+					INNER JOIN estados AS e ON tp.estados_id = e.estados_id
+					WHERE p.status = 'A'
+					AND (tp.estados_id = 1 OR tp.estados_id = 2)
+					AND (tp.data_fim < curdate());   
+			");
+				// Executa o comando
+				$resp = $stm->execute();
+		
+				if($resp && $stm->rowCount()){
+					$objetos = $stm->fetchAll(
+							PDO::FETCH_OBJ
+							);
+				}
+				return $objetos;
+			} catch(Exception $e){
+				echo "Erro no inserir: " . $e->getMessage();
+			}
+		}
 	}
 
 ?>

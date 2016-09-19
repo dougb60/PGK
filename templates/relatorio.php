@@ -37,7 +37,18 @@ $atrasadoE = explode("','", $atdo->total_atr);
 $atrasado = implode("','", $atrasadoE);
 /* calcula dentro do prazo */
 $dPrazo = intval($objeto->total_projeto - $atrasado);
+/* Calcula abertos X fechados */
+$andamento = $objetoA->total_abto + $objetoP->total_pcdo;
+$total = $andamento + $objetoF->total_fin;
+/* Calcular % de abertos e fechados */
+$totalA = $andamento;
+$totalA = ($totalA * 100) / $total;
 
+$totalF = $objetoF->total_fin;
+$totalF = ($totalF * 100) / $total;
+
+/* gera dados table tp atrasados */
+$listaAtr = $dao->listaTpAtr();
 ?>
 <div id="page-wrapper">
     <div class="container-fluid ">
@@ -75,55 +86,70 @@ $dPrazo = intval($objeto->total_projeto - $atrasado);
                 </div>
                 <!-- Chart atrasado -->
                 
-                <div class="col-sm-4 ">
+                <div class="col-sm-4 col-sm-offset-2">
                 <div id="atrasados" class="chart"></div>
                 </div>
+				<!-- Abertos X fechados -->
                 <!-- Charts -->
-                 <script>
-   		$(function () {
-	    $('#atrasados').highcharts({
-	        chart: {
-	            type: 'column'
-	        },
-	        title: {
-	            text: 'Projetos atrasados X no prazo'
-	        },
-	        xAxis: {
-	            categories: [
-	                'Projetos'
-	            ],
-	            crosshair: true
-	        },
-	        yAxis: {
-	            min: 0,
-	            title: {
-	                text: 'Nº Projetos'
-	            }
-	        },
-	        tooltip: {
-	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-	            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-	                '<td style="padding:0"><b>{point.y:.0f} </b></td></tr>',
-	            footerFormat: '</table>',
-	            shared: true,
-	            useHTML: true
-	        },
-	        plotOptions: {
-	            column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0
-	            }
-	        },
-	        series: [{
-	            name: 'Dentro do prazo',
-	            data: [<?= $dPrazo?>]
-
-	        }, {
-	            name: 'Atrasados',
-	            data: [<?= $atrasado?>]
-	        }]
-	    });
-	});
-   </script>
+                <div class="col-sm-4 ">
+                <div id="total" class="chart"></div>
+                </div>
+				<!-- Table tp atrasado -->
+				<div class="row"></div>
+				<div>
+				<table class="table table-striped" id="tableAtr">
+					<thead>
+						<tr>
+							<th class="col-sm-2">Projeto</th>
+							<th class="col-sm-3">Tarefa</th>
+							<th class="col-sm-2">Usuário</th>
+							<th class="col-sm-3">Estado</th>
+							<th class="col-sm-1">Prazo</th>
+							<th class="col-sm-1">Tempo atrasado</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?
+						foreach ($listaAtr as $key => $listaAtr){
+						?>
+						<tr class="alert alert-danger">
+							<td><?= $listaAtr->pnome?></td>
+							<td><?= $listaAtr->tnome?></td>
+							<td><?= $listaAtr->unome?></td>
+							<td><?= $listaAtr->enome?></td>
+							<td>
+								<? $listaAtr->data_fim = date("d/m/Y", strtotime ($listaAtr->data_fim));
+									echo $listaAtr->data_fim;
+								?>
+							</td>
+							<td style="text-align: center;"><?= $listaAtr->tempo_atraso . " Dias"?></td>
+						</tr>
+						<?}?>
+					</tbody>				
+				</table>
+				</div>
+				<script>
+				$(document).ready(function() {
+			    $('#tableAtr').DataTable({
+			    	"autoWidth": false,
+			    	"info": false,
+			    	"bLengthChange": false,
+			    	"language": {
+	   	            	"zeroRecords": "Nenhum registro encontrado",
+						"search":"Busca: ",
+						"paginate": {
+							        "first":      "Primeiro",
+							        "last":       "Ultimo",
+							        "next":       "Proximo",
+							        "previous":   "Anterior"
+							    },
+							"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+							"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+							"lengthMenu": "Mostrar _MENU_ entradas",
+	   		        }
+				    });
+				});
+				</script> 
+              <? include_once 'charts.php';?>
 <? include_once 'includes/footer.php'; ?>
 

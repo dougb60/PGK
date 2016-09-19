@@ -6,7 +6,7 @@ $lista = $dao->listar("");
 
 if(count($_GET)>0){
 	$dao = new UsuarioDao();
-	$valida = $dao->validaLig($_GET["id"]);
+	$valida = $dao->validaUsuTar($_GET["id"]);
 	
 	
 		if ($valida){
@@ -79,7 +79,21 @@ if(count($_GET)>0){
     </table>
       <script>
 	$(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+    	"language": {
+               	"zeroRecords": "Nenhum registro encontrado",
+    		"search":"Busca: ",
+    		"paginate": {
+    			        "first": "Primeiro",
+    			        "last":  "Ultimo",
+    			        "next":  "Proximo",
+    			        "previous":   "Anterior"
+    			    },
+    			"info": "Mostrando _START_ à _END_ de _TOTAL_ entradas",
+    			"infoEmpty": "Mostrando 0 à 0 de 0 entradas",
+    			"lengthMenu": "Mostrar _MENU_ entradas",
+    			}
+    		});
 	});
 	</script> 
 <?php 
