@@ -20,7 +20,7 @@
 		echo '<div class="alert alert-danger" role="alert">Projeto deletado com sucesso</div>';
 	}
 	$dao = new ProjetoDao();
-	$lista = $dao->listar("");//retorno apenas os projetos ativos do usuario logado
+	$lista = $dao->listar($objeto->usuario_id);//retorno apenas os projetos ativos do usuario logado
 	
 	
 	

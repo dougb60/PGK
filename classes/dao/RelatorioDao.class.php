@@ -46,6 +46,7 @@
 				  INNER JOIN usuarios AS u ON u.usuario_id = p.usuarios_id
 				  INNER JOIN estados AS e ON e.estados_id = p.estados_id
 				  WHERE p.projeto_id = ?
+				  AND u.tipo = 'admin'
 				 GROUP BY p.projeto_id
 				) AS sub
 			");

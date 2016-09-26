@@ -110,11 +110,15 @@ class ProjetoDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				SELECT * FROM projetos
-				WHERE nome LIKE ?
-				AND status = 'A'
+				SELECT tp.projetos_id, p.nome, p.descricao, p.data_inicio, p.data_fim,p.projeto_id
+					FROM tarefas_projetos AS tp
+					INNER JOIN projetos AS p on tp.projetos_id = p.projeto_id
+					INNER JOIN usuarios AS u on tp.usuarios_id = u.usuario_id
+					WHERE u.usuario_id = ?
+					AND p.status = 'A'
+					GROUP BY p.projeto_id
 			");
-			$stm->bindValue(1, "%$obj%");
+			$stm->bindValue(1, $obj);
 			
 			// Executa o comando
 			$resp = $stm->execute();
