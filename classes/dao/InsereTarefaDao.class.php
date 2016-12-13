@@ -10,7 +10,8 @@ class InsereTarefaDao {
 			$con = ConexaoDB::conectar();
 			// Monta o comando para a inserção
 			$stm = $con->prepare("
-				INSERT INTO tarefas_projetos (data_inicio, data_fim, tarefas_id, projetos_id, estados_id, usuarios_id) 
+				INSERT INTO tarefas_projetos (data_inicio, 
+				data_fim, tarefas_id, projetos_id, estados_id, usuarios_id) 
 				VALUES (?, ?, ?, ?, 1, ?);
 			");
 			$stm->bindValue(1, $obj->dini);

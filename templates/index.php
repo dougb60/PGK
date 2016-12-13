@@ -10,13 +10,16 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            PGK
                         </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
+                        <div class="col-sm-4">
+                        <h4>Acesso rápido</h4>
+                        <ul class="list-group">
+                        	<li class="list-group-item"><a href="lista-projeto.php">Projetos</a></li>
+                        	<li class="list-group-item"><a href="lista-usuario.php">Usuários</a></li>
+                        	<li class="list-group-item"><a href="relatorio.php">Relatórios</a></li>
+                        </ul>
+                        </div>
                     </div>
                     
                 </div>

@@ -61,6 +61,7 @@ if(count($_GET)>0){
 					&nome=<?= $objeto->nome ?>
 					&email=<?= $objeto->email ?>
 					&fone=<?= $objeto->telefone ?>
+					&cel=<?= $objeto->cel?>
 					&op=alterar" title="Alterar">
 					<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"> | </i></a>
 					<!-- Envia GET para excluir usuario -->

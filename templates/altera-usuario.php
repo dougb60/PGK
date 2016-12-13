@@ -51,6 +51,12 @@ if((count($_POST)>0)){
 	      <input type="text" name="fone" class="form-control" id="fone" value="<?= $obj["fone"] ?>" required>
 	    </div>
 	  </div>
+	  <div class="form-group">
+	    <label for="fone" class="col-sm-2 control-label">Celular</label>
+	    <div class="col-sm-10">
+	      <input type="text" name="cel" class="form-control" id="phone" value="<?= $obj["cel"] ?>" required>
+	    </div>
+	  </div>
 	  <div>
 	    <div>
 	      <input type="hidden" name="id" value="<?= $obj["id"]?>">
